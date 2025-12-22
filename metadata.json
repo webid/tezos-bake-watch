@@ -1,0 +1,5 @@
+{
+  "name": "Tezos Baker Watch",
+  "description": "A minimal, dark-themed dashboard to track upcoming baking rights for Tezos delegates using the TZKT API.",
+  "requestFramePermissions": []
+}

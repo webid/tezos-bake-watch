@@ -1,0 +1,46 @@
+
+export interface HeadResponse {
+  level: number;
+  hash: string;
+  timestamp: string;
+}
+
+export interface BakingRight {
+  type: string;
+  cycle: number;
+  level: number;
+  timestamp: string;
+  round?: number;
+}
+
+export interface APIError {
+  message: string;
+}
+
+export interface Delegation {
+  enabled: boolean;
+  minBalance: number;
+  fee: number;
+  capacity: number;
+  freeSpace: number;
+  estimatedApy: number;
+}
+
+export interface Staking {
+  enabled: boolean;
+  minBalance: number;
+  fee: number;
+  capacity: number;
+  freeSpace: number;
+  estimatedApy: number;
+}
+
+export interface Baker {
+  address: string;
+  name: string;
+  logo?: string;
+  status: string;
+  balance: number;
+  delegation: Delegation;
+  staking: Staking;
+}

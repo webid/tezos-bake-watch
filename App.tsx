@@ -1,0 +1,337 @@
+
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import Layout from './components/Layout';
+import BakingRightCell from './components/BakingRightRow';
+import BakerSelector from './components/BakerSelector';
+import { tzktService } from './services/tzktService';
+import { bakingBadService } from './services/bakingBadService';
+import { BakingRight, Baker } from './types';
+
+const DEFAULT_BAKER_ADDRESS = 'tz1T1fRJmpPp1pN2z45sivxdbKNQtyatzCVx';
+
+const formatDuration = (ms: number): string => {
+  if (ms <= 0) return '--';
+  const seconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) return `${days}d ${hours % 24}h`;
+  if (hours > 0) return `${hours}h ${minutes % 60}m`;
+  return `${minutes}m ${seconds % 60}s`;
+};
+
+const App: React.FC = () => {
+  const [bakers, setBakers] = useState<Baker[]>([]);
+  const [selectedBaker, setSelectedBaker] = useState<Baker | null>(null);
+  
+  const [allRights, setAllRights] = useState<BakingRight[]>([]);
+  const [currentLevel, setCurrentLevel] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [now, setNow] = useState(Date.now());
+
+  // Load bakers on mount and handle initial selection
+  useEffect(() => {
+    const loadBakers = async () => {
+      try {
+        const data = await bakingBadService.getBakers();
+        setBakers(data);
+
+        // Resolve initial baker from local storage or default
+        const savedAddress = localStorage.getItem('selectedBakerAddress') || DEFAULT_BAKER_ADDRESS;
+        const found = data.find(b => b.address === savedAddress);
+        
+        if (found) {
+          setSelectedBaker(found);
+        } else {
+          // Fallback object if not found in list yet or custom/private baker
+          setSelectedBaker({
+            address: savedAddress,
+            name: 'Unknown Baker',
+            status: 'active',
+            balance: 0,
+            delegation: { enabled: false, minBalance: 0, fee: 0, capacity: 0, freeSpace: 0, estimatedApy: 0 },
+            staking: { enabled: false, minBalance: 0, fee: 0, capacity: 0, freeSpace: 0, estimatedApy: 0 }
+          });
+        }
+      } catch (err) {
+        console.error('Failed to load bakers', err);
+        // Ensure we have a selected baker even if API fails
+        if (!selectedBaker) {
+             const savedAddress = localStorage.getItem('selectedBakerAddress') || DEFAULT_BAKER_ADDRESS;
+             setSelectedBaker({
+                address: savedAddress,
+                name: 'Baker',
+                status: 'unknown',
+                balance: 0,
+                delegation: { enabled: false, minBalance: 0, fee: 0, capacity: 0, freeSpace: 0, estimatedApy: 0 },
+                staking: { enabled: false, minBalance: 0, fee: 0, capacity: 0, freeSpace: 0, estimatedApy: 0 }
+             });
+        }
+      }
+    };
+    loadBakers();
+  }, []);
+
+  const handleBakerSelect = (baker: Baker) => {
+    setSelectedBaker(baker);
+    localStorage.setItem('selectedBakerAddress', baker.address);
+    // Reset data immediately to show loading state for new baker
+    setAllRights([]);
+    setIsLoading(true);
+  };
+
+  // Timer for countdowns
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const fetchData = useCallback(async () => {
+    if (!selectedBaker) return;
+
+    setIsLoading(true);
+    setError(null);
+    try {
+      const level = await tzktService.getHeadLevel();
+      setCurrentLevel(level);
+      const data = await tzktService.getBakingRights(level, selectedBaker.address);
+      setAllRights(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [selectedBaker]);
+
+  // Initial fetch and polling
+  useEffect(() => {
+    if (selectedBaker) {
+        fetchData();
+        const interval = setInterval(fetchData, 24000);
+        return () => clearInterval(interval);
+    }
+  }, [fetchData, selectedBaker]);
+
+  // Derived state
+  const bakingRights = useMemo(() => allRights.filter(r => r.type === 'baking' && r.round === 0), [allRights]);
+  
+  const nextBlockRight = bakingRights[0];
+  const lastRight = allRights[allRights.length - 1];
+
+  const timeToNextBlock = nextBlockRight 
+    ? new Date(nextBlockRight.timestamp).getTime() - now 
+    : 0;
+    
+  const dataCoverageInterval = lastRight
+    ? new Date(lastRight.timestamp).getTime() - now
+    : 0;
+
+  // Group rights by cycle
+  const groupedByCycle = useMemo(() => {
+    const groups: Record<number, BakingRight[]> = {};
+    bakingRights.forEach(right => {
+      if (!groups[right.cycle]) {
+        groups[right.cycle] = [];
+      }
+      groups[right.cycle].push(right);
+    });
+    return groups;
+  }, [bakingRights]);
+
+  const renderBakerInfo = () => {
+    if (!selectedBaker || selectedBaker.name === 'Unknown Baker') return null;
+    
+    const formatValue = (val: number) => Math.floor(val).toLocaleString();
+    const formatPercent = (val: number) => (val * 100).toFixed(2) + '%';
+    
+    // Helper to render a data section (Delegation or Staking)
+    const renderDataSection = (title: string, data: any) => (
+       <div className="flex flex-col gap-3">
+         <div className="flex items-center gap-2 pb-1 border-b border-zinc-800/50">
+            <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{title}</h3>
+            {data.enabled ? 
+              <span className="flex items-center gap-1 bg-green-900/20 px-1.5 py-0.5 rounded border border-green-900/30">
+                 <span className="w-1 h-1 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]"></span>
+                 <span className="text-[8px] font-bold text-green-500 uppercase">Active</span>
+              </span> : 
+              <span className="flex items-center gap-1 bg-red-900/20 px-1.5 py-0.5 rounded border border-red-900/30">
+                 <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                 <span className="text-[8px] font-bold text-red-500 uppercase">Disabled</span>
+              </span>
+            }
+         </div>
+         <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-2">
+            <div className="flex flex-col">
+              <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Fee</span>
+              <span className="text-xs font-mono text-zinc-300">{formatPercent(data.fee)}</span>
+            </div>
+             <div className="flex flex-col">
+              <span className="text-[9px] text-zinc-600 uppercase mb-0.5">APY</span>
+              <span className="text-xs font-mono text-green-400 font-bold">{formatPercent(data.estimatedApy)}</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Free Space</span>
+              <span className="text-xs font-mono text-zinc-300 tabular-nums">{formatValue(data.freeSpace)} ꜩ</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Capacity</span>
+              <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(data.capacity)} ꜩ</span>
+            </div>
+             {data.minBalance > 0 && (
+              <div className="flex flex-col sm:col-span-2 mt-1">
+                <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Min Lock</span>
+                <span className="text-xs font-mono text-zinc-300 tabular-nums">{formatValue(data.minBalance)} ꜩ</span>
+              </div>
+            )}
+         </div>
+       </div>
+    );
+
+    return (
+      <div className="flex flex-col gap-4 mb-6 p-4 bg-zinc-900/30 rounded-lg border border-zinc-900/50">
+        <div className="flex items-center justify-between border-b border-zinc-900/50 pb-4">
+             <div className="flex items-center gap-3">
+                 {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800" />}
+                 <div>
+                    <h2 className="text-sm font-bold text-zinc-200">{selectedBaker.name}</h2>
+                    <p className="text-[10px] font-mono text-zinc-500">{selectedBaker.address}</p>
+                 </div>
+             </div>
+              <div className="text-right">
+                  <span className="text-[9px] text-zinc-600 uppercase block tracking-wider mb-0.5">Total Balance</span>
+                  <span className="text-sm font-mono text-blue-400 font-bold tabular-nums">{formatValue(selectedBaker.balance)} ꜩ</span>
+              </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="relative">
+                {renderDataSection('Delegation', selectedBaker.delegation)}
+            </div>
+            <div className="relative md:pl-8 md:border-l md:border-zinc-800/30">
+                {renderDataSection('Staking', selectedBaker.staking)}
+            </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    if (isLoading && !allRights.length) {
+      return (
+        <div className="flex flex-col items-center justify-center py-16 gap-3">
+          <div className="w-4 h-4 border border-zinc-800 border-t-zinc-500 rounded-full animate-spin" />
+          <p className="text-[10px] text-zinc-600 font-mono uppercase tracking-widest">Loading chain data...</p>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="p-6 border border-red-900/20 bg-red-950/5 rounded text-center">
+          <p className="text-[11px] text-red-400 font-mono mb-3">{error}</p>
+          <button 
+            onClick={fetchData}
+            className="px-3 py-1 bg-zinc-900 text-zinc-400 text-[10px] font-bold uppercase rounded border border-zinc-800 hover:text-zinc-100 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      );
+    }
+
+    if (bakingRights.length === 0 && allRights.length > 0) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-zinc-600 text-[11px] font-mono uppercase">No upcoming baking rights in loaded range</p>
+        </div>
+      );
+    }
+
+    if (allRights.length === 0) {
+        return (
+          <div className="text-center py-12">
+            <p className="text-zinc-600 text-[11px] font-mono uppercase">No upcoming rights detected</p>
+          </div>
+        );
+    }
+
+    return (
+      <div className="space-y-6">
+        {/* Stats Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-zinc-900/20 rounded-md border border-zinc-900/50 gap-4 sm:gap-0">
+          <div className="flex gap-6 sm:gap-8 overflow-x-auto pb-2 sm:pb-0">
+            <div className="flex flex-col min-w-max">
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Total Slots</span>
+              <span className="text-xs font-mono text-zinc-400">{bakingRights.length}</span>
+            </div>
+            <div className="flex flex-col min-w-max">
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Cycles</span>
+              <span className="text-xs font-mono text-zinc-400">{Object.keys(groupedByCycle).length}</span>
+            </div>
+            <div className="flex flex-col min-w-max">
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Next Block</span>
+              <span className={`text-xs font-mono tabular-nums ${timeToNextBlock > 0 ? 'text-green-400' : 'text-zinc-500'}`}>
+                {timeToNextBlock > 0 ? formatDuration(timeToNextBlock) : '--'}
+              </span>
+            </div>
+             <div className="flex flex-col min-w-max">
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Horizon</span>
+              <span className="text-xs font-mono text-zinc-400 tabular-nums">
+                {formatDuration(dataCoverageInterval)}
+              </span>
+            </div>
+          </div>
+          <div className="text-right border-t sm:border-t-0 border-zinc-900/50 pt-2 sm:pt-0">
+            <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em] block">Chain Height</span>
+            <span className="text-sm font-mono text-blue-500 font-bold tabular-nums">
+              {currentLevel?.toLocaleString()}
+            </span>
+          </div>
+        </div>
+
+        {/* Cycle Blocks */}
+        <div className="space-y-8">
+          {(Object.entries(groupedByCycle) as [string, BakingRight[]][]).map(([cycle, cycleRights]) => (
+            <section key={cycle} className="space-y-2">
+              <div className="flex items-center gap-3 px-1 border-b border-zinc-900 pb-1.5">
+                <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-500/5 px-2 py-0.5 rounded border border-blue-500/10">
+                  Cycle {cycle}
+                </span>
+                <span className="text-[9px] text-zinc-700 font-mono uppercase">
+                  {cycleRights.length} slots
+                </span>
+                <div className="flex-grow h-px bg-zinc-900" />
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0.5">
+                {cycleRights.map((right, idx) => (
+                  <BakingRightCell key={`${right.level}-${idx}`} right={right} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <Layout 
+      isRefreshing={isLoading && allRights.length > 0}
+      bakerSelector={
+        <BakerSelector 
+          bakers={bakers} 
+          selectedBaker={selectedBaker} 
+          onSelect={handleBakerSelect} 
+        />
+      }
+    >
+      {renderBakerInfo()}
+      {renderContent()}
+    </Layout>
+  );
+};
+
+export default App;
