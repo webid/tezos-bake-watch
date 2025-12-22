@@ -158,7 +158,12 @@ const App: React.FC = () => {
     const formatPercent = (val: number) => (val * 100).toFixed(2) + '%';
     
     // Helper to render a data section (Delegation or Staking)
-    const renderDataSection = (title: string, data: any) => (
+    const renderDataSection = (title: string, data: any) => {
+       const used = data.capacity - data.freeSpace;
+       const isOverCapacity = data.freeSpace < 0;
+       const percentage = data.capacity > 0 ? (used / data.capacity) * 100 : 0;
+       
+       return (
        <div className="flex flex-col gap-3">
          <div className="flex items-center gap-2 pb-1 border-b border-zinc-800/50">
             <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{title}</h3>
@@ -184,7 +189,9 @@ const App: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Free Space</span>
-              <span className="text-xs font-mono text-zinc-300 tabular-nums">{formatValue(data.freeSpace)} ꜩ</span>
+              <span className={`text-xs font-mono tabular-nums ${isOverCapacity ? 'text-red-400 font-bold' : 'text-zinc-300'}`}>
+                {formatValue(data.freeSpace)} ꜩ
+              </span>
             </div>
             <div className="flex flex-col">
               <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Capacity</span>
@@ -197,8 +204,19 @@ const App: React.FC = () => {
               </div>
             )}
          </div>
+         {/* Progress Bar */}
+         <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden mt-1">
+            <div 
+              className={`h-full rounded-full transition-all duration-500 ${
+                  isOverCapacity ? 'bg-red-500' : 
+                  data.enabled ? 'bg-zinc-500' : 'bg-zinc-700'
+              }`}
+              style={{ width: `${Math.min(percentage, 100)}%` }}
+            />
+         </div>
        </div>
     );
+    };
 
     return (
       <div className="flex flex-col gap-4 mb-6 p-4 bg-zinc-900/30 rounded-lg border border-zinc-900/50">
