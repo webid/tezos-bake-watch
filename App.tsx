@@ -5,7 +5,7 @@ import BakingRightCell from './components/BakingRightRow';
 import BakerSelector from './components/BakerSelector';
 import { tzktService } from './services/tzktService';
 import { bakingBadService } from './services/bakingBadService';
-import { BakingRight, Baker } from './types';
+import { BakingRight, Baker, Cycle } from './types';
 
 const DEFAULT_BAKER_ADDRESS = 'tz1T1fRJmpPp1pN2z45sivxdbKNQtyatzCVx';
 
@@ -24,6 +24,7 @@ const formatDuration = (ms: number): string => {
 const App: React.FC = () => {
   const [bakers, setBakers] = useState<Baker[]>([]);
   const [selectedBaker, setSelectedBaker] = useState<Baker | null>(null);
+  const [cycles, setCycles] = useState<Record<number, Cycle>>({});
   
   const [allRights, setAllRights] = useState<BakingRight[]>([]);
   const [currentLevel, setCurrentLevel] = useState<number | null>(null);
@@ -31,9 +32,19 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(Date.now());
 
-  // Load bakers on mount and handle initial selection
+  // Load bakers and cycles on mount
   useEffect(() => {
-    const loadBakers = async () => {
+    const loadInitialData = async () => {
+      // Load Cycles
+      try {
+        const cyclesList = await tzktService.getCycles();
+        const cyclesMap = cyclesList.reduce((acc, c) => ({...acc, [c.index]: c}), {} as Record<number, Cycle>);
+        setCycles(cyclesMap);
+      } catch (err) {
+        console.error('Failed to load cycles', err);
+      }
+
+      // Load Bakers
       try {
         const data = await bakingBadService.getBakers();
         setBakers(data);
@@ -71,7 +82,7 @@ const App: React.FC = () => {
         }
       }
     };
-    loadBakers();
+    loadInitialData();
   }, []);
 
   const handleBakerSelect = (baker: Baker) => {
@@ -310,6 +321,20 @@ const App: React.FC = () => {
                   <BakingRightCell key={`${right.level}-${idx}`} right={right} />
                 ))}
               </div>
+              
+              {cycles[parseInt(cycle)] && (
+                <div className="flex items-center justify-end gap-4 pt-3 pb-1 opacity-60">
+                   <div className="flex items-center gap-1.5">
+                     <span className="text-[9px] text-zinc-600 uppercase tracking-wider font-bold">End Level</span>
+                     <span className="text-[10px] text-zinc-500 font-mono">{cycles[parseInt(cycle)].lastLevel.toLocaleString()}</span>
+                   </div>
+                   <div className="w-px h-3 bg-zinc-800"></div>
+                   <div className="flex items-center gap-1.5">
+                     <span className="text-[9px] text-zinc-600 uppercase tracking-wider font-bold">Est. End</span>
+                     <span className="text-[10px] text-zinc-500 font-mono">{new Date(cycles[parseInt(cycle)].endTime).toLocaleString()}</span>
+                   </div>
+                </div>
+              )}
             </section>
           ))}
         </div>

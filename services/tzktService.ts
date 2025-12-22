@@ -1,9 +1,20 @@
 
-import { HeadResponse, BakingRight } from '../types';
+import { HeadResponse, BakingRight, Cycle } from '../types';
 
 const BASE_URL = 'https://api.tzkt.io/v1';
 
 export const tzktService = {
+  /**
+   * Fetches cycle information.
+   */
+  async getCycles(): Promise<Cycle[]> {
+    const response = await fetch(`${BASE_URL}/cycles?sort.desc=index&limit=20`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch cycles: ${response.statusText}`);
+    }
+    return await response.json();
+  },
+
   /**
    * Fetches the current head of the Tezos blockchain to get the current level.
    */

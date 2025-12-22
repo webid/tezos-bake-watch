@@ -44,3 +44,14 @@ export interface Baker {
   delegation: Delegation;
   staking: Staking;
 }
+
+export interface Cycle {
+  index: number;
+  firstLevel: number;
+  startTime: string;
+  lastLevel: number;
+  endTime: string;
+  snapshotLevel: number;
+  totalBakers: number;
+  totalBakingPower: number;
+}
