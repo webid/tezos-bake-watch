@@ -16,7 +16,7 @@ const formatDuration = (ms: number): string => {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  if (days > 0) return `${days}d ${hours % 24}h`;
+  if (days > 0) return `${days}d ${hours % 24}h ${minutes % 60}m`;
   if (hours > 0) return `${hours}h ${minutes % 60}m`;
   return `${minutes}m ${seconds % 60}s`;
 };
@@ -331,8 +331,8 @@ const App: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-zinc-900/20 rounded-md border border-zinc-900/50 gap-4 sm:gap-0">
           <div className="flex gap-6 sm:gap-8 overflow-x-auto pb-2 sm:pb-0">
             <div className="flex flex-col min-w-max">
-              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Total Slots</span>
-              <span className="text-xs font-mono text-zinc-400">{bakingRights.length}</span>
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Total Baking Slots</span>
+              <span className="text-xs font-mono text-zinc-400">🧑‍🍳 {bakingRights.length}</span>
             </div>
             <div className="flex flex-col min-w-max">
               <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Cycles</span>
