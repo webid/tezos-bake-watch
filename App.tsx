@@ -144,10 +144,13 @@ const App: React.FC = () => {
   const timeToNextBlock = nextBlockRight 
     ? new Date(nextBlockRight.timestamp).getTime() - now 
     : 0;
+
+  const lastCycleIndex = bakingRights.length > 0 ? bakingRights[bakingRights.length - 1].cycle : undefined;
+  const lastCycleData = lastCycleIndex ? cycles[lastCycleIndex] : undefined;
     
-  const dataCoverageInterval = lastRight
-    ? new Date(lastRight.timestamp).getTime() - now
-    : 0;
+  const dataCoverageInterval = lastCycleData
+    ? new Date(lastCycleData.endTime).getTime() - now
+    : (lastRight ? new Date(lastRight.timestamp).getTime() - now : 0);
 
   // Group rights by cycle
   const groupedByCycle = useMemo(() => {
@@ -242,7 +245,7 @@ const App: React.FC = () => {
               <div className="text-right">
                   <span className="text-[9px] text-zinc-600 uppercase block tracking-wider mb-0.5">Own Stake</span>
                   <span className="text-sm font-mono text-blue-400 font-bold tabular-nums">
-                    {formatValue(bakerStats ? bakerStats.stakedBalance : selectedBaker.balance)} ꜩ
+                    {formatValue(bakerStats ? bakerStats.stakedBalance / 1000000 : selectedBaker.balance)} ꜩ
                     <span className="block text-[9px] text-zinc-600 font-normal mt-0.5">
                        Total: {formatValue(bakerStats ? bakerStats.balance / 1000000 : selectedBaker.balance)} ꜩ
                     </span>
@@ -252,16 +255,6 @@ const App: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="relative">
-                {renderDataSection('Delegation', selectedBaker.delegation, 
-                  bakerStats && (
-                    <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
-                      <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Delegated Amount</span>
-                      <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.delegatedBalance / 1000000)} ꜩ</span>
-                    </div>
-                  )
-                )}
-            </div>
-            <div className="relative md:pl-8 md:border-l md:border-zinc-800/30">
                 {renderDataSection('Staking', selectedBaker.staking,
                   bakerStats && (
                      <>
@@ -274,6 +267,16 @@ const App: React.FC = () => {
                         <span className="text-xs font-mono text-zinc-400 tabular-nums">{bakerStats.stakersCount}</span>
                       </div>
                      </>
+                  )
+                )}
+            </div>
+            <div className="relative md:pl-8 md:border-l md:border-zinc-800/30">
+                {renderDataSection('Delegation', selectedBaker.delegation, 
+                  bakerStats && (
+                    <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
+                      <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Delegated Amount</span>
+                      <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.delegatedBalance / 1000000)} ꜩ</span>
+                    </div>
                   )
                 )}
             </div>
