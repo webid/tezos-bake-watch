@@ -24,7 +24,15 @@ const formatDuration = (ms: number): string => {
 const App: React.FC = () => {
   const [bakers, setBakers] = useState<Baker[]>([]);
   const [selectedBaker, setSelectedBaker] = useState<Baker | null>(null);
-  const [isMetricsExpanded, setIsMetricsExpanded] = useState(true);
+  const [isMetricsExpanded, setIsMetricsExpanded] = useState(() => {
+    const saved = localStorage.getItem('isMetricsExpanded');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isMetricsExpanded', JSON.stringify(isMetricsExpanded));
+  }, [isMetricsExpanded]);
+
   const [cycles, setCycles] = useState<Record<number, Cycle>>({});
   
   const [allRights, setAllRights] = useState<BakingRight[]>([]);
@@ -236,12 +244,12 @@ const App: React.FC = () => {
     return (
       <div className="flex flex-col gap-4 mb-6 p-4 bg-zinc-900/30 rounded-lg border border-zinc-900/50">
         <div 
-          className="flex items-center justify-between border-b border-zinc-900/50 pb-4 cursor-pointer select-none group"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-zinc-900/50 pb-4 cursor-pointer select-none group gap-4 sm:gap-0"
           onClick={() => setIsMetricsExpanded(!isMetricsExpanded)}
         >
-             <div className="flex items-center gap-3">
+             <div className="flex items-center gap-3 w-full sm:w-auto">
                  <button 
-                    className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors"
+                    className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors shrink-0"
                     aria-label={isMetricsExpanded ? "Collapse metrics" : "Expand metrics"}
                  >
                     <svg 
@@ -257,23 +265,23 @@ const App: React.FC = () => {
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                  </button>
-                 {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800" />}
-                 <div>
-                    <h2 className="text-sm font-bold text-zinc-200">{selectedBaker.name}</h2>
+                 {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800 shrink-0" />}
+                 <div className="min-w-0">
+                    <h2 className="text-sm font-bold text-zinc-200 truncate pr-2">{selectedBaker.name}</h2>
                     <a 
                       href={`https://tzkt.io/${selectedBaker.address}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors hover:underline"
+                      className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors hover:underline break-all block"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {selectedBaker.address}
                     </a>
                  </div>
              </div>
-              <div className="text-right">
-                  <span className="text-[9px] text-zinc-600 uppercase block tracking-wider mb-0.5">Own Stake</span>
-                  <span className="text-sm font-mono text-blue-400 font-bold tabular-nums">
+              <div className="hidden sm:flex flex-col items-end justify-between w-auto mt-0 pl-0">
+                  <span className="text-[9px] text-zinc-600 uppercase tracking-wider mb-0.5 whitespace-nowrap">Own Stake</span>
+                  <span className="text-sm font-mono text-blue-400 font-bold tabular-nums text-right">
                     {formatValue(bakerStats ? bakerStats.stakedBalance / 1000000 : selectedBaker.balance)} ꜩ
                     <span className="block text-[9px] text-zinc-600 font-normal mt-0.5">
                        Total: {formatValue(bakerStats ? bakerStats.balance / 1000000 : selectedBaker.balance)} ꜩ
