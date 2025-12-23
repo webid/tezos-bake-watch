@@ -24,6 +24,7 @@ const formatDuration = (ms: number): string => {
 const App: React.FC = () => {
   const [bakers, setBakers] = useState<Baker[]>([]);
   const [selectedBaker, setSelectedBaker] = useState<Baker | null>(null);
+  const [isMetricsExpanded, setIsMetricsExpanded] = useState(true);
   const [cycles, setCycles] = useState<Record<number, Cycle>>({});
   
   const [allRights, setAllRights] = useState<BakingRight[]>([]);
@@ -234,12 +235,40 @@ const App: React.FC = () => {
 
     return (
       <div className="flex flex-col gap-4 mb-6 p-4 bg-zinc-900/30 rounded-lg border border-zinc-900/50">
-        <div className="flex items-center justify-between border-b border-zinc-900/50 pb-4">
+        <div 
+          className="flex items-center justify-between border-b border-zinc-900/50 pb-4 cursor-pointer select-none group"
+          onClick={() => setIsMetricsExpanded(!isMetricsExpanded)}
+        >
              <div className="flex items-center gap-3">
+                 <button 
+                    className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors"
+                    aria-label={isMetricsExpanded ? "Collapse metrics" : "Expand metrics"}
+                 >
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      className={`w-4 h-4 transition-transform duration-300 ${isMetricsExpanded ? 'rotate-180' : ''}`}
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                 </button>
                  {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800" />}
                  <div>
                     <h2 className="text-sm font-bold text-zinc-200">{selectedBaker.name}</h2>
-                    <p className="text-[10px] font-mono text-zinc-500">{selectedBaker.address}</p>
+                    <a 
+                      href={`https://tzkt.io/${selectedBaker.address}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {selectedBaker.address}
+                    </a>
                  </div>
              </div>
               <div className="text-right">
@@ -253,34 +282,36 @@ const App: React.FC = () => {
               </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="relative">
-                {renderDataSection('Staking', selectedBaker.staking,
-                  bakerStats && (
-                     <>
+        {isMetricsExpanded && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 animate-in slide-in-from-top-2 fade-in duration-300">
+              <div className="relative">
+                  {renderDataSection('Staking', selectedBaker.staking,
+                    bakerStats && (
+                       <>
+                        <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
+                          <span className="text-[9px] text-zinc-600 uppercase mb-0.5">External Stake</span>
+                          <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.externalStakedBalance / 1000000)} ꜩ</span>
+                        </div>
+                         <div className="flex flex-col mt-1 pt-2 border-t border-zinc-800/50">
+                          <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Stakers</span>
+                          <span className="text-xs font-mono text-zinc-400 tabular-nums">{bakerStats.stakersCount}</span>
+                        </div>
+                       </>
+                    )
+                  )}
+              </div>
+              <div className="relative md:pl-8 md:border-l md:border-zinc-800/30">
+                  {renderDataSection('Delegation', selectedBaker.delegation, 
+                    bakerStats && (
                       <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
-                        <span className="text-[9px] text-zinc-600 uppercase mb-0.5">External Stake</span>
-                        <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.externalStakedBalance / 1000000)} ꜩ</span>
+                        <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Delegated Amount</span>
+                        <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.delegatedBalance / 1000000)} ꜩ</span>
                       </div>
-                       <div className="flex flex-col mt-1 pt-2 border-t border-zinc-800/50">
-                        <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Stakers</span>
-                        <span className="text-xs font-mono text-zinc-400 tabular-nums">{bakerStats.stakersCount}</span>
-                      </div>
-                     </>
-                  )
-                )}
-            </div>
-            <div className="relative md:pl-8 md:border-l md:border-zinc-800/30">
-                {renderDataSection('Delegation', selectedBaker.delegation, 
-                  bakerStats && (
-                    <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
-                      <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Delegated Amount</span>
-                      <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.delegatedBalance / 1000000)} ꜩ</span>
-                    </div>
-                  )
-                )}
-            </div>
-        </div>
+                    )
+                  )}
+              </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -332,7 +363,7 @@ const App: React.FC = () => {
           <div className="flex gap-6 sm:gap-8 overflow-x-auto pb-2 sm:pb-0">
             <div className="flex flex-col min-w-max">
               <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Total Baking Slots</span>
-              <span className="text-xs font-mono text-zinc-400">🧑‍🍳 {bakingRights.length}</span>
+              <span className="text-xs font-mono text-zinc-400">{bakingRights.length}</span>
             </div>
             <div className="flex flex-col min-w-max">
               <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Cycles</span>
