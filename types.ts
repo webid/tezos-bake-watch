@@ -69,3 +69,5 @@ export interface BakerExtendedStats {
   stakingBalance: number;
   delegatedBalance: number;
 }
+
+

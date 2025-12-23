@@ -136,6 +136,9 @@ const App: React.FC = () => {
       setAllRights(rightsData);
       setBakerStats(statsData);
 
+      setAllRights(rightsData);
+      setBakerStats(statsData);
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
@@ -314,6 +317,18 @@ const App: React.FC = () => {
                           <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Stakers</span>
                           <span className="text-xs font-mono text-zinc-400 tabular-nums">{bakerStats.stakersCount}</span>
                         </div>
+                        {bakerStats.unstakedBalance > 0 && (
+                          <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
+                            <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Own Unstaked</span>
+                            <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.unstakedBalance / 1000000)} ꜩ</span>
+                          </div>
+                        )}
+                        {bakerStats.externalUnstakedBalance > 0 && (
+                          <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
+                            <span className="text-[9px] text-zinc-600 uppercase mb-0.5">External Unstaked</span>
+                            <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.externalUnstakedBalance / 1000000)} ꜩ</span>
+                          </div>
+                        )}
                        </>
                     )
                   )}
