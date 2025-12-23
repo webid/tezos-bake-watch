@@ -44,5 +44,16 @@ export const tzktService = {
       throw new Error(`Failed to fetch baking rights: ${response.statusText}`);
     }
     return await response.json();
+  },
+
+  /**
+   * Fetches detailed account information for a specific baker.
+   */
+  async getAccount(address: string): Promise<import('../types').BakerExtendedStats> {
+    const response = await fetch(`${BASE_URL}/accounts/${address}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch account info: ${response.statusText}`);
+    }
+    return await response.json();
   }
 };

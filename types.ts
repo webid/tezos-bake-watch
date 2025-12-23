@@ -55,3 +55,17 @@ export interface Cycle {
   totalBakers: number;
   totalBakingPower: number;
 }
+
+export interface BakerExtendedStats {
+  balance: number;
+  stakedBalance: number;
+  unstakedBalance: number;
+  externalStakedBalance: number;
+  externalUnstakedBalance: number;
+  totalStakedBalance: number;
+  stakersCount: number;
+  limitOfStakingOverBaking: number;
+  edgeOfBakingOverStaking: number;
+  stakingBalance: number;
+  delegatedBalance: number;
+}
