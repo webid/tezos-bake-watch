@@ -28,10 +28,18 @@ const App: React.FC = () => {
     const saved = localStorage.getItem('isMetricsExpanded');
     return saved !== null ? JSON.parse(saved) : true;
   });
+  const [showRound1, setShowRound1] = useState(() => {
+    const saved = localStorage.getItem('showRound1');
+    return saved !== null ? JSON.parse(saved) : false;
+  });
 
   useEffect(() => {
     localStorage.setItem('isMetricsExpanded', JSON.stringify(isMetricsExpanded));
   }, [isMetricsExpanded]);
+
+  useEffect(() => {
+    localStorage.setItem('showRound1', JSON.stringify(showRound1));
+  }, [showRound1]);
 
   const [cycles, setCycles] = useState<Record<number, Cycle>>({});
   
@@ -145,7 +153,9 @@ const App: React.FC = () => {
   }, [fetchData, selectedBaker]);
 
   // Derived state
-  const bakingRights = useMemo(() => allRights.filter(r => r.type === 'baking' && r.round === 0), [allRights]);
+  const bakingRights = useMemo(() => {
+    return allRights.filter(r => r.type === 'baking' && (showRound1 ? r.round <= 1 : r.round === 0));
+  }, [allRights, showRound1]);
   
   const nextBlockRight = bakingRights[0];
   const lastRight = allRights[allRights.length - 1];
@@ -370,7 +380,7 @@ const App: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-zinc-900/20 rounded-md border border-zinc-900/50 gap-4 sm:gap-0">
           <div className="flex gap-6 sm:gap-8 overflow-x-auto pb-2 sm:pb-0">
             <div className="flex flex-col min-w-max">
-              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Total Baking Slots</span>
+              <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em]">Baking Slots</span>
               <span className="text-xs font-mono text-zinc-400">{bakingRights.length}</span>
             </div>
             <div className="flex flex-col min-w-max">
@@ -390,13 +400,27 @@ const App: React.FC = () => {
               </span>
             </div>
           </div>
-          <div className="text-right border-t sm:border-t-0 border-zinc-900/50 pt-2 sm:pt-0">
-            <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em] block">Chain Height</span>
-            <span className="text-sm font-mono text-blue-500 font-bold tabular-nums">
-              {currentLevel?.toLocaleString()}
-            </span>
+          <div className="flex items-center gap-4 border-t sm:border-t-0 border-zinc-900/50 pt-2 sm:pt-0">
+             {/* Toggle Round 1 */}
+             <div className="flex items-center gap-2 cursor-pointer group" onClick={() => setShowRound1(!showRound1)}>
+                <div className={`w-8 h-4 rounded-full p-0.5 transition-colors duration-200 ${showRound1 ? 'bg-blue-600' : 'bg-zinc-700'}`}>
+                    <div className={`w-3 h-3 bg-white rounded-full transition-transform duration-200 shadow-sm ${showRound1 ? 'translate-x-4' : 'translate-x-0'}`} />
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-zinc-300 group-hover:text-zinc-200 transition-colors">Maybe I'm lucky</span>
+                    <span className="text-[8px] text-zinc-500">Show priorities up to 1</span>
+                </div>
+             </div>
+             
+             <div className="text-right pl-4 border-l border-zinc-800/50">
+                <span className="text-[8px] text-zinc-600 uppercase font-black tracking-[0.15em] block">Chain Height</span>
+                <span className="text-sm font-mono text-blue-500 font-bold tabular-nums">
+                {currentLevel?.toLocaleString()}
+                </span>
+             </div>
           </div>
         </div>
+
 
         {/* Cycle Blocks */}
         <div className="space-y-8">
