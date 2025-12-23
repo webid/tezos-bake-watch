@@ -1,5 +1,6 @@
 
 import React from 'react';
+import logo from '../src/assets/logo.png';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children, isRefreshing, bakerSelector }
         
         <div className="max-w-3xl mx-auto px-4 h-12 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className={`w-1.5 h-1.5 rounded-full bg-blue-500 ${isRefreshing ? 'animate-pulse' : ''} shadow-[0_0_8px_rgba(59,130,246,0.5)]`} />
+            <img 
+              src={logo} 
+              alt="Logo" 
+              className={`w-5 h-5 object-contain ${isRefreshing ? 'animate-pulse opacity-80' : ''}`}
+            />
             <h1 className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500">Tezos Bake Watch</h1>
           </div>
           <div className="flex items-center gap-3">
