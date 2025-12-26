@@ -67,16 +67,36 @@ const App: React.FC = () => {
         const data = await bakingBadService.getBakers();
         setBakers(data);
 
-        // Resolve initial baker from local storage or default
-        const savedAddress = localStorage.getItem('selectedBakerAddress') || DEFAULT_BAKER_ADDRESS;
-        const found = data.find(b => b.address === savedAddress);
+        // Resolve initial baker from URL Hash or local storage
+        const hash = window.location.hash.slice(1); // remove '#'
+        const urlAddress = /^(tz[1-3]|KT1)[1-9A-HJ-NP-Za-km-z]{33}$/.test(hash) ? hash : null;
+        
+        let addressToUse = localStorage.getItem('selectedBakerAddress') || DEFAULT_BAKER_ADDRESS;
+        
+        if (urlAddress) {
+          const exists = data.some(b => b.address === urlAddress);
+          if (exists) {
+            addressToUse = urlAddress;
+          } else {
+             // Clear invalid hash
+             window.history.replaceState(null, '', ' ');
+          }
+        } else if (window.location.hash) {
+            // Clear invalid hash format if present
+             window.history.replaceState(null, '', ' ');
+        }
+
+        const found = data.find(b => b.address === addressToUse);
         
         if (found) {
           setSelectedBaker(found);
+          if (urlAddress && found.address === urlAddress) {
+             localStorage.setItem('selectedBakerAddress', found.address);
+          }
         } else {
           // Fallback object if not found in list yet or custom/private baker
           setSelectedBaker({
-            address: savedAddress,
+            address: addressToUse,
             name: 'Unknown Baker',
             status: 'active',
             balance: 0,
@@ -106,6 +126,7 @@ const App: React.FC = () => {
   const handleBakerSelect = (baker: Baker) => {
     setSelectedBaker(baker);
     localStorage.setItem('selectedBakerAddress', baker.address);
+    window.location.hash = baker.address;
     // Reset data immediately to show loading state for new baker
     setAllRights([]);
     setIsLoading(true);
