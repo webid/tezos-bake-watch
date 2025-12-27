@@ -71,7 +71,7 @@ export const tzktService = {
     });
 
     const url = `${BASE_URL}/rights?${query.toString()}`;
-    console.log('Past rights query:', url);
+    // console.log('Past rights query:', url);
 
     const response = await fetch(url);
     if (!response.ok) {
