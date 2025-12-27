@@ -58,19 +58,22 @@ export const tzktService = {
   },
 
   /**
-   * Fetches the last 5 past baking rights for a specific baker.
+   * Fetches the last 20 past baking rights for a specific baker.
    */
-  async getPastBakingRights(bakerAddress: string): Promise<BakingRight[]> {
+  async getPastBakingRights(bakerAddress: string, maxLevel: number): Promise<BakingRight[]> {
     const query = new URLSearchParams({
       baker: bakerAddress,
       limit: '20',
       type: 'baking',
-      'status.ne': 'future',
+      'level.le': maxLevel.toString(),
       'sort.desc': 'level',
       select: 'cycle,level,timestamp,type,round,status'
     });
 
-    const response = await fetch(`${BASE_URL}/rights?${query.toString()}`);
+    const url = `${BASE_URL}/rights?${query.toString()}`;
+    console.log('Past rights query:', url);
+
+    const response = await fetch(url);
     if (!response.ok) {
        throw new Error(`Failed to fetch past baking rights: ${response.statusText}`);
     }

@@ -150,16 +150,16 @@ const App: React.FC = () => {
     setIsLoading(true);
     setError(null);
 
-    // Fetch past baking rights independently so it's not blocked by main data failures
-    setIsLoadingHistory(true);
-    tzktService.getPastBakingRights(selectedBaker.address)
-      .then(rights => setPastRights(rights))
-      .catch(console.error)
-      .finally(() => setIsLoadingHistory(false));
-
     try {
       const level = await tzktService.getHeadLevel();
       setCurrentLevel(level);
+
+      // Fetch past baking rights independently so it's not blocked by main data failures
+      setIsLoadingHistory(true);
+      tzktService.getPastBakingRights(selectedBaker.address, level)
+          .then(rights => setPastRights(rights))
+          .catch(console.error)
+          .finally(() => setIsLoadingHistory(false));
 
       // Parallel fetch for rights and account stats
       const [rightsData, statsData] = await Promise.all([
