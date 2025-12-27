@@ -49,6 +49,9 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(Date.now());
   const [bakerStats, setBakerStats] = useState<import('./types').BakerExtendedStats | null>(null);
+  const [pastRights, setPastRights] = useState<BakingRight[]>([]);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [isBlockModalOpen, setIsBlockModalOpen] = useState(false);
 
   // Load bakers and cycles on mount
   useEffect(() => {
@@ -129,7 +132,9 @@ const App: React.FC = () => {
     window.location.hash = baker.address;
     // Reset data immediately to show loading state for new baker
     setAllRights([]);
+    setPastRights([]); // Clear history
     setIsLoading(true);
+    setIsLoadingHistory(true); // Set history loading
   };
 
   // Timer for countdowns
@@ -144,6 +149,14 @@ const App: React.FC = () => {
 
     setIsLoading(true);
     setError(null);
+
+    // Fetch past baking rights independently so it's not blocked by main data failures
+    setIsLoadingHistory(true);
+    tzktService.getPastBakingRights(selectedBaker.address)
+      .then(rights => setPastRights(rights))
+      .catch(console.error)
+      .finally(() => setIsLoadingHistory(false));
+
     try {
       const level = await tzktService.getHeadLevel();
       setCurrentLevel(level);
@@ -157,8 +170,7 @@ const App: React.FC = () => {
       setAllRights(rightsData);
       setBakerStats(statsData);
 
-      setAllRights(rightsData);
-      setBakerStats(statsData);
+
 
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -303,6 +315,17 @@ const App: React.FC = () => {
                  <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <h2 className="text-sm font-bold text-zinc-200 truncate">{selectedBaker.name}</h2>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setIsBlockModalOpen(true); }}
+                        className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors"
+                        title="View Recent Baking History"
+                      >
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                          </svg>
+                      </button>
                       <a 
                         href={`https://bafo.fafolab.xyz/?address=${selectedBaker.address}`}
                         target="_blank" 
@@ -523,6 +546,72 @@ const App: React.FC = () => {
     >
       {renderBakerInfo()}
       {renderContent()}
+      
+        {isBlockModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsBlockModalOpen(false)}>
+           <div className="bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl max-w-sm w-full p-0 overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-4 border-b border-zinc-800 bg-zinc-900/50">
+                 <h3 className="text-zinc-200 font-bold text-sm uppercase tracking-wider">Recent History</h3>
+                 <button onClick={() => setIsBlockModalOpen(false)} className="text-zinc-500 hover:text-zinc-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                 </button>
+              </div>
+              
+              <div className="flex flex-col max-h-[320px] overflow-y-auto custom-scrollbar">
+                 {isLoadingHistory && pastRights.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-12 gap-3">
+                       <div className="w-5 h-5 border-2 border-zinc-800 border-t-zinc-500 rounded-full animate-spin" />
+                       <span className="text-[10px] text-zinc-600 font-mono uppercase tracking-widest">Loading history...</span>
+                    </div>
+                 ) : pastRights.length === 0 ? (
+                    <div className="p-8 text-center text-zinc-600 text-[10px] uppercase font-mono">No recent rights found</div>
+                 ) : (
+                    pastRights.map((right, i) => {
+                       const isSuccess = right.status === 'realized';
+                       const isMissed = right.status === 'missed_baking' || right.status === 'missed_endorsing'; // usually type=baking so missed_baking
+                       const statusColor = isSuccess ? 'text-green-500' : isMissed ? 'text-red-500' : 'text-zinc-500';
+                       const bgHover = 'hover:bg-zinc-800/50';
+
+                       return (
+                          <a 
+                            key={right.level}
+                            href={`https://tzkt.io/${right.level}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center justify-between p-3 border-b border-zinc-800/50 last:border-0 transition-colors ${bgHover} group`}
+                          >
+                             <div className="flex items-center gap-3">
+                                <div className={`w-2 h-2 rounded-full ${isSuccess ? 'bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.4)]' : isMissed ? 'bg-red-500' : 'bg-zinc-600'}`} />
+                                 <div className="flex flex-col">
+                                   <div className="flex items-center gap-2">
+                                      <span className="text-[10px] uppercase font-bold text-zinc-500 mb-0.5">Cycle {right.cycle}</span>
+                                      {right.round > 0 && <span className="text-[9px] font-bold text-amber-500 bg-amber-500/10 px-1 rounded-sm">R{right.round}</span>}
+                                   </div>
+                                   <span className="text-sm font-mono font-bold text-zinc-200 group-hover:text-blue-400 transition-colors">{right.level.toLocaleString()}</span>
+                                </div>
+                             </div>
+                             
+                             <div className="flex flex-col items-end">
+                                <span className={`text-xs font-bold uppercase ${statusColor} mb-0.5`}>
+                                   {right.status === 'realized' ? 'Baked' : right.status.replace('_', ' ')}
+                                </span>
+                                <span className="text-[10px] text-zinc-400 font-mono">
+                                   {formatDuration(Date.now() - new Date(right.timestamp).getTime())} ago
+                                </span>
+                             </div>
+                          </a>
+                       );
+                    })
+                 )}
+              </div>
+              {pastRights.length > 0 && (
+                <div className="p-2 bg-zinc-950/30 text-center border-t border-zinc-800">
+                   <span className="text-[8px] text-zinc-700 uppercase tracking-widest">Last 20 Slots</span>
+                </div>
+              )}
+           </div>
+        </div>
+      )}
     </Layout>
   );
 };

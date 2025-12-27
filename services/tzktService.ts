@@ -36,7 +36,7 @@ export const tzktService = {
       'level.ge': startLevel.toString(),
       limit: '10000',
       type: 'baking',
-      select: 'cycle,level,timestamp,type,round' 
+      select: 'cycle,level,timestamp,type,round,status' 
     });
 
     const response = await fetch(`${BASE_URL}/rights?${query.toString()}`);
@@ -53,6 +53,26 @@ export const tzktService = {
     const response = await fetch(`${BASE_URL}/accounts/${address}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch account info: ${response.statusText}`);
+    }
+    return await response.json();
+  },
+
+  /**
+   * Fetches the last 5 past baking rights for a specific baker.
+   */
+  async getPastBakingRights(bakerAddress: string): Promise<BakingRight[]> {
+    const query = new URLSearchParams({
+      baker: bakerAddress,
+      limit: '20',
+      type: 'baking',
+      'status.ne': 'future',
+      'sort.desc': 'level',
+      select: 'cycle,level,timestamp,type,round,status'
+    });
+
+    const response = await fetch(`${BASE_URL}/rights?${query.toString()}`);
+    if (!response.ok) {
+       throw new Error(`Failed to fetch past baking rights: ${response.statusText}`);
     }
     return await response.json();
   }
