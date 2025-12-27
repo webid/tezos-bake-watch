@@ -301,12 +301,24 @@ const App: React.FC = () => {
                  </button>
                  {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800 shrink-0" />}
                  <div className="min-w-0">
-                    <h2 className="text-sm font-bold text-zinc-200 truncate pr-2">{selectedBaker.name}</h2>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-sm font-bold text-zinc-200 truncate">{selectedBaker.name}</h2>
+                      <a 
+                        href={`https://bafo.fafolab.xyz/?address=${selectedBaker.address}`}
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-[9px] font-black text-blue-500/50 hover:text-blue-400 transition-colors uppercase tracking-wider shrink-0 border border-blue-500/20 hover:border-blue-500/50 px-1.5 py-0.5 rounded cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                        title="View performance analysis and insights at B.A.F.O."
+                      >
+                        B.A.F.O.
+                      </a>
+                    </div>
                     <a 
                       href={`https://tzkt.io/${selectedBaker.address}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors hover:underline break-all block"
+                      className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors hover:underline break-all block mt-0.5"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {selectedBaker.address}
