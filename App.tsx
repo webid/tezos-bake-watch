@@ -143,6 +143,32 @@ const App: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Separate function to fetch history
+  const fetchPastHistory = useCallback(async (levelOverride?: number) => {
+      if (!selectedBaker) return;
+      
+      setIsLoadingHistory(true);
+      try {
+          const level = levelOverride ?? (currentLevel || await tzktService.getHeadLevel());
+          // If we had to fetch level, update it
+          if (!currentLevel) setCurrentLevel(level);
+
+          const rights = await tzktService.getPastBakingRights(selectedBaker.address, level);
+          setPastRights(rights);
+      } catch (err) {
+          console.error('Failed to fetch past rights', err);
+      } finally {
+          setIsLoadingHistory(false);
+      }
+  }, [selectedBaker, currentLevel]);
+
+  // Trigger history fetch on modal open
+  useEffect(() => {
+      if (isBlockModalOpen && selectedBaker) {
+          fetchPastHistory();
+      }
+  }, [isBlockModalOpen, selectedBaker, fetchPastHistory]);
+
   // Fetch data function extended
   const fetchData = useCallback(async () => {
     if (!selectedBaker) return;
@@ -155,11 +181,7 @@ const App: React.FC = () => {
       setCurrentLevel(level);
 
       // Fetch past baking rights independently so it's not blocked by main data failures
-      setIsLoadingHistory(true);
-      tzktService.getPastBakingRights(selectedBaker.address, level)
-          .then(rights => setPastRights(rights))
-          .catch(console.error)
-          .finally(() => setIsLoadingHistory(false));
+      fetchPastHistory(level);
 
       // Parallel fetch for rights and account stats
       const [rightsData, statsData] = await Promise.all([
@@ -566,7 +588,7 @@ const App: React.FC = () => {
                  ) : pastRights.length === 0 ? (
                     <div className="p-8 text-center text-zinc-600 text-[10px] uppercase font-mono">No recent rights found</div>
                  ) : (
-                    pastRights.map((right, i) => {
+                    [...pastRights].reverse().map((right, i) => {
                        const isSuccess = right.status === 'realized';
                        const isMissed = right.status === 'missed_baking' || right.status === 'missed_endorsing'; // usually type=baking so missed_baking
                        const statusColor = isSuccess ? 'text-green-500' : isMissed ? 'text-red-500' : 'text-zinc-500';
@@ -606,7 +628,7 @@ const App: React.FC = () => {
               </div>
               {pastRights.length > 0 && (
                 <div className="p-2 bg-zinc-950/30 text-center border-t border-zinc-800">
-                   <span className="text-[8px] text-zinc-700 uppercase tracking-widest">Last 20 Slots</span>
+                   <span className="text-[8px] text-zinc-700 uppercase tracking-widest">Last 48h</span>
                 </div>
               )}
            </div>

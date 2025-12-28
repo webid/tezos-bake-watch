@@ -61,12 +61,13 @@ export const tzktService = {
    * Fetches the last 20 past baking rights for a specific baker.
    */
   async getPastBakingRights(bakerAddress: string, maxLevel: number): Promise<BakingRight[]> {
+    const startLevel = Math.max(0, maxLevel - 21600);
     const query = new URLSearchParams({
       baker: bakerAddress,
-      limit: '20',
-      type: 'baking',
+      'level.ge': startLevel.toString(),
       'level.le': maxLevel.toString(),
-      'sort.desc': 'level',
+      limit: '10000',
+      type: 'baking',
       select: 'cycle,level,timestamp,type,round,status'
     });
 
