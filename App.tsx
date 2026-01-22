@@ -133,8 +133,10 @@ const App: React.FC = () => {
     // Reset data immediately to show loading state for new baker
     setAllRights([]);
     setPastRights([]); // Clear history
+    setLuckyBlocks([]); // Clear lucky blocks
     setIsLoading(true);
     setIsLoadingHistory(true); // Set history loading
+    setIsLoadingLucky(true); // Set lucky loading
   };
 
   // Timer for countdowns
@@ -168,6 +170,31 @@ const App: React.FC = () => {
           fetchPastHistory();
       }
   }, [isBlockModalOpen, selectedBaker, fetchPastHistory]);
+
+
+  // Lucky Blocks State
+  const [luckyBlocks, setLuckyBlocks] = useState<BakingRight[]>([]);
+  const [isLoadingLucky, setIsLoadingLucky] = useState(false);
+  const [isLuckyModalOpen, setIsLuckyModalOpen] = useState(false);
+
+  const fetchLuckyBlocks = useCallback(async () => {
+    if (!selectedBaker) return;
+    setIsLoadingLucky(true);
+    try {
+        const blocks = await tzktService.getLuckyBlocks(selectedBaker.address);
+        setLuckyBlocks(blocks.reverse());
+    } catch (err) {
+        console.error('Failed to fetch lucky blocks', err);
+    } finally {
+        setIsLoadingLucky(false);
+    }
+  }, [selectedBaker]);
+
+  useEffect(() => {
+      if (isLuckyModalOpen && selectedBaker) {
+          fetchLuckyBlocks();
+      }
+  }, [isLuckyModalOpen, selectedBaker, fetchLuckyBlocks]);
 
   // Fetch data function extended
   const fetchData = useCallback(async () => {
@@ -346,6 +373,15 @@ const App: React.FC = () => {
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                             <line x1="8" y1="21" x2="16" y2="21"></line>
                             <line x1="12" y1="17" x2="12" y2="21"></line>
+                          </svg>
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setIsLuckyModalOpen(true); }}
+                        className="p-1 rounded hover:bg-zinc-800 text-amber-500 hover:text-amber-400 transition-colors"
+                        title="View Lucky Blocks (Stolen Blocks)"
+                      >
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                           </svg>
                       </button>
                       <a 
@@ -631,6 +667,75 @@ const App: React.FC = () => {
                    <span className="text-[8px] text-zinc-700 uppercase tracking-widest">Last 48h</span>
                 </div>
               )}
+           </div>
+        </div>
+      )}
+      
+      {isLuckyModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsLuckyModalOpen(false)}>
+           <div className="bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl max-w-sm w-full p-0 overflow-hidden animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-4 border-b border-zinc-800 bg-zinc-900/50">
+                 <div className="flex items-center gap-2">
+                    <span className="text-amber-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                    </span>
+                    <h3 className="text-zinc-200 font-bold text-sm uppercase tracking-wider">Lucky Blocks</h3>
+                 </div>
+                 <button onClick={() => setIsLuckyModalOpen(false)} className="text-zinc-500 hover:text-zinc-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                 </button>
+              </div>
+              
+              <div className="flex flex-col max-h-[320px] overflow-y-auto custom-scrollbar">
+                 {isLoadingLucky && luckyBlocks.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-12 gap-3">
+                       <div className="w-5 h-5 border-2 border-zinc-800 border-t-amber-500 rounded-full animate-spin" />
+                       <span className="text-[10px] text-zinc-600 font-mono uppercase tracking-widest">Finding lucky blocks...</span>
+                    </div>
+                 ) : luckyBlocks.length === 0 ? (
+                    <div className="p-8 text-center text-zinc-600 text-[10px] uppercase font-mono">No lucky blocks found recently</div>
+                 ) : (
+                    luckyBlocks.map((right) => {
+                       const isExtremelyLucky = (right.round || 0) >= 2;
+                       const statusColor = isExtremelyLucky ? 'text-purple-400' : 'text-amber-400';
+                       const statusText = isExtremelyLucky ? 'Extremely Lucky' : 'Lucky';
+                       const bgHover = 'hover:bg-zinc-800/50';
+
+                       return (
+                          <a 
+                            key={right.level}
+                            href={`https://tzkt.io/${right.level}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`flex items-center justify-between p-3 border-b border-zinc-800/50 last:border-0 transition-colors ${bgHover} group`}
+                          >
+                             <div className="flex items-center gap-3">
+                                <span className={`flex items-center justify-center text-[10px] font-bold w-6 h-6 rounded ${isExtremelyLucky ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'}`}>
+                                    R{right.round}
+                                </span>
+                                 <div className="flex flex-col">
+                                   <div className="flex items-center gap-2">
+                                      <span className="text-[10px] uppercase font-bold text-zinc-500 mb-0.5">Cycle {right.cycle}</span>
+                                   </div>
+                                   <span className="text-sm font-mono font-bold text-zinc-200 group-hover:text-blue-400 transition-colors">{right.level.toLocaleString()}</span>
+                                </div>
+                             </div>
+                             
+                             <div className="flex flex-col items-end">
+                                <span className={`text-xs font-bold uppercase ${statusColor} mb-0.5`}>
+                                   {statusText}
+                                </span>
+                                <span className="text-[10px] text-zinc-400 font-mono">
+                                   {formatDuration(Date.now() - new Date(right.timestamp).getTime())} ago
+                                </span>
+                             </div>
+                          </a>
+                       );
+                    })
+                 )}
+              </div>
            </div>
         </div>
       )}

@@ -79,5 +79,27 @@ export const tzktService = {
        throw new Error(`Failed to fetch past baking rights: ${response.statusText}`);
     }
     return await response.json();
+  },
+  /**
+   * Fetches lucky blocks (baked at round > 0) for a specific baker.
+   * "Lucky" means round 1, "Extremely Lucky" means round 2+.
+   */
+  async getLuckyBlocks(bakerAddress: string, limit: number = 100): Promise<BakingRight[]> {
+    const query = new URLSearchParams({
+      baker: bakerAddress,
+      'type': 'baking',
+      'status': 'realized',
+      'round.gt': '0',
+      //'sort.desc': 'level',
+      'limit': limit.toString(),
+      select: 'cycle,level,timestamp,type,round,status,baker'
+    });
+
+    const url = `${BASE_URL}/rights?${query.toString()}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+       throw new Error(`Failed to fetch lucky blocks: ${response.statusText}`);
+    }
+    return await response.json();
   }
 };

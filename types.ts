@@ -11,6 +11,8 @@ export interface BakingRight {
   level: number;
   timestamp: string;
   round?: number;
+  status?: string;
+  baker?: { address: string; name?: string };
 }
 
 export interface APIError {

@@ -1,0 +1,1871 @@
+{
+  "updatedAt": "2026-01-22T02:58:27.126Z",
+  "global": {
+    "totalLuckyBlocks": 117157,
+    "luckiestBaker": {
+      "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+      "alias": "Coinbase Baker",
+      "count": 12112,
+      "totalLuckScore": 12783,
+      "maxRound": 11
+    },
+    "topBakers": [
+      {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 12112,
+        "totalLuckScore": 12783,
+        "maxRound": 11
+      },
+      {
+        "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+        "alias": "Everstake",
+        "count": 5007,
+        "totalLuckScore": 5343,
+        "maxRound": 6
+      },
+      {
+        "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+        "alias": "Kraken Legacy Baker",
+        "count": 4167,
+        "totalLuckScore": 4411,
+        "maxRound": 4
+      },
+      {
+        "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+        "alias": "Binance Baker",
+        "count": 3624,
+        "totalLuckScore": 3801,
+        "maxRound": 4
+      },
+      {
+        "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n",
+        "alias": "pos.dog",
+        "count": 3447,
+        "totalLuckScore": 3733,
+        "maxRound": 6
+      },
+      {
+        "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93",
+        "alias": "Stake.fish",
+        "count": 2697,
+        "totalLuckScore": 2909,
+        "maxRound": 12
+      },
+      {
+        "address": "tz1RCFbB9GpALpsZtu6J58sb74dm8qe6XBzv",
+        "alias": "Kraken Baker",
+        "count": 2654,
+        "totalLuckScore": 2785,
+        "maxRound": 5
+      },
+      {
+        "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb",
+        "alias": "P2P.org",
+        "count": 2412,
+        "totalLuckScore": 2596,
+        "maxRound": 14
+      },
+      {
+        "address": "tz1eEnQhbwf6trb8Q8mPb2RaPkNk2rN7BKi8",
+        "alias": "Chorus One - Stake Only",
+        "count": 2379,
+        "totalLuckScore": 2530,
+        "maxRound": 5
+      },
+      {
+        "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk",
+        "alias": "Foundation baker 4 legacy",
+        "count": 2203,
+        "totalLuckScore": 2413,
+        "maxRound": 7
+      }
+    ],
+    "topHighestRoundBlocks": [
+      {
+        "cycle": 48,
+        "level": 200704,
+        "timestamp": "2018-11-23T17:14:33Z",
+        "round": 58,
+        "baker": {
+          "alias": "TzDutch",
+          "address": "tz1PesW5khQNhy4revu2ETvMtWPtuVyH2XkZ"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694619,
+        "timestamp": "2019-11-15T07:55:02Z",
+        "round": 42,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694618,
+        "timestamp": "2019-11-15T07:22:50Z",
+        "round": 41,
+        "baker": {
+          "alias": "MyTezosBaking",
+          "address": "tz1d6Fx42mYgVFnHUW8T8A7WBfJ6nD9pVok8"
+        }
+      },
+      {
+        "cycle": 12,
+        "level": 49746,
+        "timestamp": "2018-08-06T05:56:26Z",
+        "round": 38,
+        "baker": {
+          "alias": "CryptoDelegate",
+          "address": "tz1Tnjaxk6tbAeC2TmMApPh8UsrEVQvhHvx5"
+        }
+      },
+      {
+        "cycle": 12,
+        "level": 50509,
+        "timestamp": "2018-08-06T22:02:41Z",
+        "round": 30,
+        "baker": {
+          "alias": "Tezzigator Legacy",
+          "address": "tz1iZEKy4LaAjnTmn2RuGDf2iqdAQKnRi8kY"
+        }
+      },
+      {
+        "cycle": 428,
+        "level": 1916929,
+        "timestamp": "2021-12-04T03:24:22Z",
+        "round": 29,
+        "baker": {
+          "alias": "Melange",
+          "address": "tz1PWCDnz783NNGGQjEFFsHtrcK5yBW4E2rm"
+        }
+      },
+      {
+        "cycle": 12,
+        "level": 49901,
+        "timestamp": "2018-08-06T09:46:36Z",
+        "round": 25,
+        "baker": {
+          "alias": "Happy Tezos",
+          "address": "tz1WCd2jm4uSt4vntk4vSuUWoZQGhLcDuR9q"
+        }
+      },
+      {
+        "cycle": 122,
+        "level": 500360,
+        "timestamp": "2019-06-29T07:15:14Z",
+        "round": 19,
+        "baker": {
+          "alias": "TezosBC",
+          "address": "tz1c3Wh8gNMMsYwZd67JndQpYxdaaPUV27E7"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 200705,
+        "timestamp": "2018-11-23T17:36:48Z",
+        "round": 17,
+        "baker": {
+          "alias": "TzDutch",
+          "address": "tz1PesW5khQNhy4revu2ETvMtWPtuVyH2XkZ"
+        }
+      },
+      {
+        "cycle": 562,
+        "level": 3019851,
+        "timestamp": "2023-01-01T14:56:59Z",
+        "round": 17,
+        "baker": {
+          "address": "tz1gUNyn3hmnEWqkusWPzxRaon1cs7ndWh7h"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117375,
+        "timestamp": "2018-09-24T13:53:10Z",
+        "round": 16,
+        "baker": {
+          "alias": "TzDutch",
+          "address": "tz1PesW5khQNhy4revu2ETvMtWPtuVyH2XkZ"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117379,
+        "timestamp": "2018-09-24T14:38:25Z",
+        "round": 16,
+        "baker": {
+          "address": "tz1NortRftucvAkD1J58L32EhSVrQEWJCEnB"
+        }
+      },
+      {
+        "cycle": 144,
+        "level": 589829,
+        "timestamp": "2019-09-01T18:25:06Z",
+        "round": 16,
+        "baker": {
+          "alias": "Everstake Legacy",
+          "address": "tz1MXFrtZoaXckE41bjUCSjAjAap3AFDSr3N"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 200709,
+        "timestamp": "2018-11-23T18:02:03Z",
+        "round": 15,
+        "baker": {
+          "alias": "Foundation Baker 1 legacy",
+          "address": "tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9"
+        }
+      },
+      {
+        "cycle": 427,
+        "level": 1916928,
+        "timestamp": "2021-12-04T02:51:14Z",
+        "round": 15,
+        "baker": {
+          "alias": "Melange",
+          "address": "tz1PWCDnz783NNGGQjEFFsHtrcK5yBW4E2rm"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117380,
+        "timestamp": "2018-09-24T14:56:55Z",
+        "round": 14,
+        "baker": {
+          "alias": "Tezosteam",
+          "address": "tz1LLNkQK4UQV6QcFShiXJ2vT2ELw449MzAA"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117612,
+        "timestamp": "2018-09-24T19:37:40Z",
+        "round": 14,
+        "baker": {
+          "alias": "Gate.io Baker",
+          "address": "tz1NpWrAyDL9k2Lmnyxcgr9xuJakbBxdq7FB"
+        }
+      },
+      {
+        "cycle": 160,
+        "level": 655363,
+        "timestamp": "2019-10-18T08:38:52Z",
+        "round": 14,
+        "baker": {
+          "alias": "P2P.org",
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb"
+        }
+      },
+      {
+        "cycle": 468,
+        "level": 2244609,
+        "timestamp": "2022-04-01T17:06:59Z",
+        "round": 14,
+        "baker": {
+          "address": "tz3QT9dHYKDqh563chVa6za8526ys1UKfRfL"
+        }
+      },
+      {
+        "cycle": 743,
+        "level": 5726211,
+        "timestamp": "2024-06-04T21:39:05Z",
+        "round": 13,
+        "baker": {
+          "alias": "Tezex Bakery",
+          "address": "tz1XjsQfzmaxNsbuHjuZHAcuUukVGRq4tg24"
+        }
+      },
+      {
+        "cycle": 12,
+        "level": 50541,
+        "timestamp": "2018-08-06T22:57:11Z",
+        "round": 12,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117376,
+        "timestamp": "2018-09-24T14:09:10Z",
+        "round": 12,
+        "baker": {
+          "alias": "Tezos Istanbul",
+          "address": "tz1Vm5cfHncKGBo7YvZfHc4mmudY4qpWzvSB"
+        }
+      },
+      {
+        "cycle": 160,
+        "level": 655365,
+        "timestamp": "2019-10-18T08:55:48Z",
+        "round": 12,
+        "baker": {
+          "alias": "CryptoDelegate",
+          "address": "tz1Tnjaxk6tbAeC2TmMApPh8UsrEVQvhHvx5"
+        }
+      },
+      {
+        "cycle": 468,
+        "level": 2244610,
+        "timestamp": "2022-04-01T17:33:29Z",
+        "round": 12,
+        "baker": {
+          "alias": "Tezos Panda",
+          "address": "tz1PeZx7FXy7QRuMREGXGxeipb24RsMMzUNe"
+        }
+      },
+      {
+        "cycle": 754,
+        "level": 6011419,
+        "timestamp": "2024-07-09T00:26:15Z",
+        "round": 12,
+        "baker": {
+          "alias": "Stake.fish",
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203481,
+        "timestamp": "2018-11-26T06:32:02Z",
+        "round": 11,
+        "baker": {
+          "alias": "TezPatisserie",
+          "address": "tz1UUgPwikRHW1mEyVZfGYy6QaxrY6Y7WaG5"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694623,
+        "timestamp": "2019-11-15T08:28:06Z",
+        "round": 11,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 498,
+        "level": 2490369,
+        "timestamp": "2022-06-28T21:31:59Z",
+        "round": 11,
+        "baker": {
+          "alias": "Coinbase Baker",
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117615,
+        "timestamp": "2018-09-24T20:00:40Z",
+        "round": 9,
+        "baker": {
+          "alias": "Foundation Baker 1 legacy",
+          "address": "tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203482,
+        "timestamp": "2018-11-26T06:44:17Z",
+        "round": 9,
+        "baker": {
+          "alias": "TezPatisserie",
+          "address": "tz1UUgPwikRHW1mEyVZfGYy6QaxrY6Y7WaG5"
+        }
+      },
+      {
+        "cycle": 50,
+        "level": 204847,
+        "timestamp": "2018-11-27T14:42:58Z",
+        "round": 9,
+        "baker": {
+          "address": "tz1eDDuQBEgwvc6tbnnCVrnr12tvrd6gBTpx"
+        }
+      },
+      {
+        "cycle": 96,
+        "level": 393217,
+        "timestamp": "2019-04-12T23:42:37Z",
+        "round": 9,
+        "baker": {
+          "alias": "Flippin Tacos",
+          "address": "tz1TzaNn7wSQSP5gYPXCnNzBCpyMiidCq1PX"
+        }
+      },
+      {
+        "cycle": 48,
+        "level": 200121,
+        "timestamp": "2018-11-23T03:14:34Z",
+        "round": 8,
+        "baker": {
+          "address": "tz1dW4Bq26fb6kRGF2cTSjCARtzkbrjMUiDA"
+        }
+      },
+      {
+        "cycle": 160,
+        "level": 655366,
+        "timestamp": "2019-10-18T09:05:20Z",
+        "round": 8,
+        "baker": {
+          "alias": "TzDutch",
+          "address": "tz1PesW5khQNhy4revu2ETvMtWPtuVyH2XkZ"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694620,
+        "timestamp": "2019-11-15T08:04:34Z",
+        "round": 8,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 428,
+        "level": 1916930,
+        "timestamp": "2021-12-04T03:39:06Z",
+        "round": 8,
+        "baker": {
+          "alias": "Steak.and.Bake",
+          "address": "tz1dNVDWPf3Q59SdJqnjdnu277iyvReiRS9M"
+        }
+      },
+      {
+        "cycle": 428,
+        "level": 1917113,
+        "timestamp": "2021-12-04T09:46:42Z",
+        "round": 8,
+        "baker": {
+          "alias": "Foundation baker 6 legacy",
+          "address": "tz3UoffC7FG7zfpmvmjUmUeAaHvzdcUvAj6r"
+        }
+      },
+      {
+        "cycle": 700,
+        "level": 5036397,
+        "timestamp": "2024-02-03T10:36:16Z",
+        "round": 8,
+        "baker": {
+          "alias": "Coinbase Baker",
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"
+        }
+      },
+      {
+        "cycle": 750,
+        "level": 5898243,
+        "timestamp": "2024-06-25T07:34:15Z",
+        "round": 8,
+        "baker": {
+          "alias": "Tezos Foundation Baker 6",
+          "address": "tz3TXntG3Ncp2Eiv1iGSUquAGio3kpJFQNpY"
+        }
+      },
+      {
+        "cycle": 784,
+        "level": 6733829,
+        "timestamp": "2024-10-01T04:59:00Z",
+        "round": 8,
+        "baker": {
+          "alias": "Tezos Foundation Baker 8",
+          "address": "tz3iY4BXVpKC6JQ3KB7pwHKa1SVpitcfM4p2"
+        }
+      },
+      {
+        "cycle": 4,
+        "level": 18959,
+        "timestamp": "2018-07-14T20:12:57Z",
+        "round": 7,
+        "baker": {
+          "alias": "Foundation baker 2 legacy",
+          "address": "tz3bvNMQ95vfAYtG8193ymshqjSvmxiCUuR5"
+        }
+      },
+      {
+        "cycle": 4,
+        "level": 19051,
+        "timestamp": "2018-07-14T23:01:12Z",
+        "round": 7,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203642,
+        "timestamp": "2018-11-26T10:49:27Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tez-Baking",
+          "address": "tz1LBEKXaxQbd5Gtzbc1ATCwc3pppu81aWGc"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203707,
+        "timestamp": "2018-11-26T12:52:08Z",
+        "round": 7,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 160,
+        "level": 655361,
+        "timestamp": "2019-10-18T08:18:28Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tezos Istanbul",
+          "address": "tz1Vm5cfHncKGBo7YvZfHc4mmudY4qpWzvSB"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694625,
+        "timestamp": "2019-11-15T08:39:02Z",
+        "round": 7,
+        "baker": {
+          "alias": "Foundation baker 6 legacy",
+          "address": "tz3UoffC7FG7zfpmvmjUmUeAaHvzdcUvAj6r"
+        }
+      },
+      {
+        "cycle": 169,
+        "level": 694645,
+        "timestamp": "2019-11-15T09:37:18Z",
+        "round": 7,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 428,
+        "level": 1916931,
+        "timestamp": "2021-12-04T03:51:38Z",
+        "round": 7,
+        "baker": {
+          "address": "tz1Kt4P8BCaP93AEV4eA7gmpRryWt5hznjCP"
+        }
+      },
+      {
+        "cycle": 495,
+        "level": 2467489,
+        "timestamp": "2022-06-20T16:24:44Z",
+        "round": 7,
+        "baker": {
+          "address": "tz3Zhs2dygr55yHyQyKjntAtY9bgfhLZ4Xj1"
+        }
+      },
+      {
+        "cycle": 495,
+        "level": 2468374,
+        "timestamp": "2022-06-21T00:12:44Z",
+        "round": 7,
+        "baker": {
+          "alias": "Stake.fish",
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93"
+        }
+      },
+      {
+        "cycle": 617,
+        "level": 3669651,
+        "timestamp": "2023-06-08T02:23:28Z",
+        "round": 7,
+        "baker": {
+          "alias": "Coinbase Baker",
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"
+        }
+      },
+      {
+        "cycle": 682,
+        "level": 4726790,
+        "timestamp": "2023-12-11T00:57:13Z",
+        "round": 7,
+        "baker": {
+          "alias": "AirGap",
+          "address": "tz1MJx9vhaNRSimcuXPK2rW4fLccQnDAnVKJ"
+        }
+      },
+      {
+        "cycle": 746,
+        "level": 5799940,
+        "timestamp": "2024-06-13T16:39:15Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tezos Foundation Baker 6",
+          "address": "tz3TXntG3Ncp2Eiv1iGSUquAGio3kpJFQNpY"
+        }
+      },
+      {
+        "cycle": 766,
+        "level": 6291460,
+        "timestamp": "2024-08-10T17:37:30Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tezos Foundation Baker 4",
+          "address": "tz3UQN6nBQHofmgQ3pZannhiYE2CT7TEZFim"
+        }
+      },
+      {
+        "cycle": 773,
+        "level": 6463492,
+        "timestamp": "2024-08-30T17:16:15Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tezos Foundation Baker 8",
+          "address": "tz3iY4BXVpKC6JQ3KB7pwHKa1SVpitcfM4p2"
+        }
+      },
+      {
+        "cycle": 777,
+        "level": 6561797,
+        "timestamp": "2024-09-11T03:51:30Z",
+        "round": 7,
+        "baker": {
+          "alias": "Melange",
+          "address": "tz1PWCDnz783NNGGQjEFFsHtrcK5yBW4E2rm"
+        }
+      },
+      {
+        "cycle": 782,
+        "level": 6684677,
+        "timestamp": "2024-09-25T11:37:10Z",
+        "round": 7,
+        "baker": {
+          "alias": "Coinbase Baker",
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"
+        }
+      },
+      {
+        "cycle": 805,
+        "level": 7249924,
+        "timestamp": "2024-11-30T06:24:40Z",
+        "round": 7,
+        "baker": {
+          "alias": "Tezos Canada",
+          "address": "tz1aKxnrzx5PXZJe7unufEswVRCMU9yafmfb"
+        }
+      },
+      {
+        "cycle": 1067,
+        "level": 11027555,
+        "timestamp": "2025-11-28T15:50:48Z",
+        "round": 7,
+        "baker": {
+          "alias": "Coinbase Baker",
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"
+        }
+      },
+      {
+        "cycle": 1083,
+        "level": 11199451,
+        "timestamp": "2025-12-14T15:19:32Z",
+        "round": 7,
+        "baker": {
+          "address": "tz3ZbP2pM3nwvXztbuMJwJnDvV5xdpU8UkkD"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 15369,
+        "timestamp": "2018-07-11T16:59:12Z",
+        "round": 6,
+        "baker": {
+          "alias": "Foundation baker 8 legacy",
+          "address": "tz3VEZ4k6a4Wx42iyev6i2aVAptTRLEAivNN"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 16027,
+        "timestamp": "2018-07-12T12:10:57Z",
+        "round": 6,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 6,
+        "level": 27021,
+        "timestamp": "2018-07-20T21:32:27Z",
+        "round": 6,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117381,
+        "timestamp": "2018-09-24T15:05:25Z",
+        "round": 6,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 28,
+        "level": 117382,
+        "timestamp": "2018-09-24T15:13:55Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Vote",
+          "address": "tz1bHzftcTKZMTZgLLtnrXydCm6UEqf4ivca"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203469,
+        "timestamp": "2018-11-26T05:56:17Z",
+        "round": 6,
+        "baker": {
+          "address": "tz1NMdMmWZN8QPB8pY4ddncACDg1cHi1xD2e"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 203485,
+        "timestamp": "2018-11-26T06:59:47Z",
+        "round": 6,
+        "baker": {
+          "address": "tz1LcuQHNVQEWP2fZjk1QYZGNrfLDwrT3SyZ"
+        }
+      },
+      {
+        "cycle": 49,
+        "level": 204032,
+        "timestamp": "2018-11-26T20:42:51Z",
+        "round": 6,
+        "baker": {
+          "address": "tz1iCRcca5DCUQB9BGX1socVHUGehwgXcVfY"
+        }
+      },
+      {
+        "cycle": 376,
+        "level": 1540388,
+        "timestamp": "2021-07-02T15:17:58Z",
+        "round": 6,
+        "baker": {
+          "alias": "pos.dog",
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n"
+        }
+      },
+      {
+        "cycle": 388,
+        "level": 1590058,
+        "timestamp": "2021-08-07T17:05:12Z",
+        "round": 6,
+        "baker": {
+          "alias": "XTZMaster",
+          "address": "tz1KfEsrtDaA1sX7vdM4qmEPWuSytuqCDp5j"
+        }
+      },
+      {
+        "cycle": 428,
+        "level": 1917206,
+        "timestamp": "2021-12-04T11:40:46Z",
+        "round": 6,
+        "baker": {
+          "alias": "Stake.fish",
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93"
+        }
+      },
+      {
+        "cycle": 477,
+        "level": 2318340,
+        "timestamp": "2022-04-28T03:46:14Z",
+        "round": 6,
+        "baker": {
+          "address": "tz3iJu5vrKZcsqRPs8yJ61UDoeEXZmtro4qh"
+        }
+      },
+      {
+        "cycle": 479,
+        "level": 2334722,
+        "timestamp": "2022-05-04T00:00:44Z",
+        "round": 6,
+        "baker": {
+          "alias": "Everstake",
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM"
+        }
+      },
+      {
+        "cycle": 486,
+        "level": 2397923,
+        "timestamp": "2022-05-26T10:27:44Z",
+        "round": 6,
+        "baker": {
+          "address": "tz3QSGPoRp3Kn7n3vY24eYeu3Peuqo45LQ4D"
+        }
+      },
+      {
+        "cycle": 487,
+        "level": 2400276,
+        "timestamp": "2022-05-27T06:27:29Z",
+        "round": 6,
+        "baker": {
+          "address": "tz3Zhs2dygr55yHyQyKjntAtY9bgfhLZ4Xj1"
+        }
+      },
+      {
+        "cycle": 560,
+        "level": 2998292,
+        "timestamp": "2022-12-25T01:20:59Z",
+        "round": 6,
+        "baker": {
+          "alias": "Stake.fish",
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93"
+        }
+      },
+      {
+        "cycle": 731,
+        "level": 5529606,
+        "timestamp": "2024-05-01T11:59:03Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Foundation Baker 4",
+          "address": "tz3UQN6nBQHofmgQ3pZannhiYE2CT7TEZFim"
+        }
+      },
+      {
+        "cycle": 737,
+        "level": 5631392,
+        "timestamp": "2024-05-19T06:44:50Z",
+        "round": 6,
+        "baker": {
+          "alias": "Coinone Baker",
+          "address": "tz1SYq214SCBy9naR6cvycQsYcUGpBqQAE8d"
+        }
+      },
+      {
+        "cycle": 747,
+        "level": 5824517,
+        "timestamp": "2024-06-16T13:53:10Z",
+        "round": 6,
+        "baker": {
+          "alias": "Melange",
+          "address": "tz1PWCDnz783NNGGQjEFFsHtrcK5yBW4E2rm"
+        }
+      },
+      {
+        "cycle": 755,
+        "level": 6021125,
+        "timestamp": "2024-07-10T03:45:40Z",
+        "round": 6,
+        "baker": {
+          "alias": "pos.dog",
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n"
+        }
+      },
+      {
+        "cycle": 761,
+        "level": 6168581,
+        "timestamp": "2024-07-27T09:35:45Z",
+        "round": 6,
+        "baker": {
+          "alias": "BakeTz",
+          "address": "tz1ei4WtWEMEJekSv8qDnu9PExG6Q8HgRGr3"
+        }
+      },
+      {
+        "cycle": 767,
+        "level": 6316037,
+        "timestamp": "2024-08-13T14:18:10Z",
+        "round": 6,
+        "baker": {
+          "alias": "Everstake",
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM"
+        }
+      },
+      {
+        "cycle": 769,
+        "level": 6365189,
+        "timestamp": "2024-08-19T07:20:15Z",
+        "round": 6,
+        "baker": {
+          "address": "tz3Zhs2dygr55yHyQyKjntAtY9bgfhLZ4Xj1"
+        }
+      },
+      {
+        "cycle": 771,
+        "level": 6414342,
+        "timestamp": "2024-08-25T00:20:00Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Foundation Baker 4",
+          "address": "tz3UQN6nBQHofmgQ3pZannhiYE2CT7TEZFim"
+        }
+      },
+      {
+        "cycle": 772,
+        "level": 6438917,
+        "timestamp": "2024-08-27T20:45:25Z",
+        "round": 6,
+        "baker": {
+          "alias": "AirGap",
+          "address": "tz1MJx9vhaNRSimcuXPK2rW4fLccQnDAnVKJ"
+        }
+      },
+      {
+        "cycle": 773,
+        "level": 6463492,
+        "timestamp": "2024-08-30T17:16:15Z",
+        "round": 6,
+        "baker": {
+          "address": "tz1eDKeD934e22muFRzVHxZYvFFx39QKHyj3"
+        }
+      },
+      {
+        "cycle": 777,
+        "level": 6561797,
+        "timestamp": "2024-09-11T03:51:30Z",
+        "round": 6,
+        "baker": {
+          "alias": "pos.dog",
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n"
+        }
+      },
+      {
+        "cycle": 778,
+        "level": 6586373,
+        "timestamp": "2024-09-14T00:43:05Z",
+        "round": 6,
+        "baker": {
+          "alias": "pos.dog",
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n"
+        }
+      },
+      {
+        "cycle": 780,
+        "level": 6635525,
+        "timestamp": "2024-09-19T18:09:35Z",
+        "round": 6,
+        "baker": {
+          "alias": "P2P.org",
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb"
+        }
+      },
+      {
+        "cycle": 784,
+        "level": 6733829,
+        "timestamp": "2024-10-01T04:59:00Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Foundation Baker 1",
+          "address": "tz3cqThj23Feu55KDynm7Vg81mCMpWDgzQZq"
+        }
+      },
+      {
+        "cycle": 788,
+        "level": 6832133,
+        "timestamp": "2024-10-12T15:31:50Z",
+        "round": 6,
+        "baker": {
+          "address": "tz1eDKeD934e22muFRzVHxZYvFFx39QKHyj3"
+        }
+      },
+      {
+        "cycle": 792,
+        "level": 6930438,
+        "timestamp": "2024-10-24T02:06:30Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Foundation Baker 7",
+          "address": "tz3h7UCrLoFih8nrStVy8GcChtZiVuu1mDYD"
+        }
+      },
+      {
+        "cycle": 797,
+        "level": 7053317,
+        "timestamp": "2024-11-07T09:15:30Z",
+        "round": 6,
+        "baker": {
+          "alias": "Tezos Foundation Baker 7",
+          "address": "tz3h7UCrLoFih8nrStVy8GcChtZiVuu1mDYD"
+        }
+      },
+      {
+        "cycle": 799,
+        "level": 7102470,
+        "timestamp": "2024-11-13T02:41:30Z",
+        "round": 6,
+        "baker": {
+          "address": "tz3iJu5vrKZcsqRPs8yJ61UDoeEXZmtro4qh"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 13105,
+        "timestamp": "2018-07-09T22:28:57Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 13253,
+        "timestamp": "2018-07-10T02:35:42Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 7 legacy",
+          "address": "tz3WMqdzXqRWXwyvj5Hp2H7QEepaUuS7vd9K"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 15741,
+        "timestamp": "2018-07-12T03:26:12Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 3 legacy",
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 15742,
+        "timestamp": "2018-07-12T03:33:27Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 3,
+        "level": 16155,
+        "timestamp": "2018-07-12T15:45:12Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 4 legacy",
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk"
+        }
+      },
+      {
+        "cycle": 5,
+        "level": 22820,
+        "timestamp": "2018-07-17T22:15:12Z",
+        "round": 5,
+        "baker": {
+          "alias": "Foundation baker 8 legacy",
+          "address": "tz3VEZ4k6a4Wx42iyev6i2aVAptTRLEAivNN"
+        }
+      }
+    ],
+    "worstCycles": [
+      {
+        "cycle": 710,
+        "luckyBlockCount": 1739,
+        "averageRound": 1.15,
+        "maxRound": 5
+      },
+      {
+        "cycle": 750,
+        "luckyBlockCount": 1271,
+        "averageRound": 1.08,
+        "maxRound": 8
+      },
+      {
+        "cycle": 388,
+        "luckyBlockCount": 888,
+        "averageRound": 1.28,
+        "maxRound": 6
+      },
+      {
+        "cycle": 49,
+        "luckyBlockCount": 760,
+        "averageRound": 1.44,
+        "maxRound": 17
+      },
+      {
+        "cycle": 708,
+        "luckyBlockCount": 701,
+        "averageRound": 1.06,
+        "maxRound": 4
+      },
+      {
+        "cycle": 703,
+        "luckyBlockCount": 659,
+        "averageRound": 1.05,
+        "maxRound": 3
+      },
+      {
+        "cycle": 752,
+        "luckyBlockCount": 629,
+        "averageRound": 1.03,
+        "maxRound": 4
+      },
+      {
+        "cycle": 498,
+        "luckyBlockCount": 623,
+        "averageRound": 1.23,
+        "maxRound": 11
+      },
+      {
+        "cycle": 753,
+        "luckyBlockCount": 612,
+        "averageRound": 1.06,
+        "maxRound": 4
+      },
+      {
+        "cycle": 707,
+        "luckyBlockCount": 604,
+        "averageRound": 1.07,
+        "maxRound": 3
+      }
+    ]
+  },
+  "years": {
+    "2018": {
+      "totalLuckyBlocks": 9528,
+      "luckiestBaker": {
+        "address": "tz3bvNMQ95vfAYtG8193ymshqjSvmxiCUuR5",
+        "alias": "Foundation baker 2 legacy",
+        "count": 655,
+        "totalLuckScore": 788,
+        "maxRound": 7
+      },
+      "topBakers": [
+        {
+          "address": "tz3bvNMQ95vfAYtG8193ymshqjSvmxiCUuR5",
+          "alias": "Foundation baker 2 legacy",
+          "count": 655,
+          "totalLuckScore": 788,
+          "maxRound": 7
+        },
+        {
+          "address": "tz3WMqdzXqRWXwyvj5Hp2H7QEepaUuS7vd9K",
+          "alias": "Foundation baker 7 legacy",
+          "count": 639,
+          "totalLuckScore": 772,
+          "maxRound": 5
+        },
+        {
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk",
+          "alias": "Foundation baker 4 legacy",
+          "count": 636,
+          "totalLuckScore": 765,
+          "maxRound": 7
+        },
+        {
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8",
+          "alias": "Foundation baker 3 legacy",
+          "count": 602,
+          "totalLuckScore": 736,
+          "maxRound": 12
+        },
+        {
+          "address": "tz1Yju7jmmsaUiG9qQLoYv35v5pHgnWoLWbt",
+          "alias": "Polychain Labs",
+          "count": 682,
+          "totalLuckScore": 727,
+          "maxRound": 4
+        },
+        {
+          "address": "tz3VEZ4k6a4Wx42iyev6i2aVAptTRLEAivNN",
+          "alias": "Foundation baker 8 legacy",
+          "count": 589,
+          "totalLuckScore": 711,
+          "maxRound": 6
+        },
+        {
+          "address": "tz1NpWrAyDL9k2Lmnyxcgr9xuJakbBxdq7FB",
+          "alias": "Gate.io Baker",
+          "count": 549,
+          "totalLuckScore": 639,
+          "maxRound": 14
+        },
+        {
+          "address": "tz3NExpXn9aPNZPorRE4SdjJ2RGrfbJgMAaV",
+          "alias": "Foundation baker 5 legacy",
+          "count": 557,
+          "totalLuckScore": 631,
+          "maxRound": 5
+        },
+        {
+          "address": "tz3UoffC7FG7zfpmvmjUmUeAaHvzdcUvAj6r",
+          "alias": "Foundation baker 6 legacy",
+          "count": 526,
+          "totalLuckScore": 594,
+          "maxRound": 5
+        },
+        {
+          "address": "tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9",
+          "alias": "Foundation Baker 1 legacy",
+          "count": 483,
+          "totalLuckScore": 555,
+          "maxRound": 15
+        }
+      ]
+    },
+    "2019": {
+      "totalLuckyBlocks": 13158,
+      "luckiestBaker": {
+        "address": "tz1Yju7jmmsaUiG9qQLoYv35v5pHgnWoLWbt",
+        "alias": "Polychain Labs",
+        "count": 616,
+        "totalLuckScore": 646,
+        "maxRound": 4
+      },
+      "topBakers": [
+        {
+          "address": "tz1Yju7jmmsaUiG9qQLoYv35v5pHgnWoLWbt",
+          "alias": "Polychain Labs",
+          "count": 616,
+          "totalLuckScore": 646,
+          "maxRound": 4
+        },
+        {
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8",
+          "alias": "Foundation baker 3 legacy",
+          "count": 505,
+          "totalLuckScore": 598,
+          "maxRound": 42
+        },
+        {
+          "address": "tz1NpWrAyDL9k2Lmnyxcgr9xuJakbBxdq7FB",
+          "alias": "Gate.io Baker",
+          "count": 558,
+          "totalLuckScore": 584,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3VEZ4k6a4Wx42iyev6i2aVAptTRLEAivNN",
+          "alias": "Foundation baker 8 legacy",
+          "count": 543,
+          "totalLuckScore": 563,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk",
+          "alias": "Foundation baker 4 legacy",
+          "count": 531,
+          "totalLuckScore": 559,
+          "maxRound": 7
+        },
+        {
+          "address": "tz3WMqdzXqRWXwyvj5Hp2H7QEepaUuS7vd9K",
+          "alias": "Foundation baker 7 legacy",
+          "count": 520,
+          "totalLuckScore": 550,
+          "maxRound": 4
+        },
+        {
+          "address": "tz3NExpXn9aPNZPorRE4SdjJ2RGrfbJgMAaV",
+          "alias": "Foundation baker 5 legacy",
+          "count": 512,
+          "totalLuckScore": 538,
+          "maxRound": 4
+        },
+        {
+          "address": "tz3bvNMQ95vfAYtG8193ymshqjSvmxiCUuR5",
+          "alias": "Foundation baker 2 legacy",
+          "count": 519,
+          "totalLuckScore": 536,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3UoffC7FG7zfpmvmjUmUeAaHvzdcUvAj6r",
+          "alias": "Foundation baker 6 legacy",
+          "count": 492,
+          "totalLuckScore": 522,
+          "maxRound": 7
+        },
+        {
+          "address": "tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9",
+          "alias": "Foundation Baker 1 legacy",
+          "count": 493,
+          "totalLuckScore": 520,
+          "maxRound": 5
+        }
+      ]
+    },
+    "2020": {
+      "totalLuckyBlocks": 6698,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 647,
+        "totalLuckScore": 662,
+        "maxRound": 4
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 647,
+          "totalLuckScore": 662,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 309,
+          "totalLuckScore": 318,
+          "maxRound": 2
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 284,
+          "totalLuckScore": 296,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk",
+          "alias": "Foundation baker 4 legacy",
+          "count": 272,
+          "totalLuckScore": 285,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1eEnQhbwf6trb8Q8mPb2RaPkNk2rN7BKi8",
+          "alias": "Chorus One - Stake Only",
+          "count": 254,
+          "totalLuckScore": 261,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3NExpXn9aPNZPorRE4SdjJ2RGrfbJgMAaV",
+          "alias": "Foundation baker 5 legacy",
+          "count": 240,
+          "totalLuckScore": 250,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3RDC3Jdn4j15J7bBHZd29EUee9gVB1CxD9",
+          "alias": "Foundation Baker 1 legacy",
+          "count": 245,
+          "totalLuckScore": 248,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3VEZ4k6a4Wx42iyev6i2aVAptTRLEAivNN",
+          "alias": "Foundation baker 8 legacy",
+          "count": 243,
+          "totalLuckScore": 248,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3RB4aoyjov4KEVRbuhvQ1CKJgBJMWhaeB8",
+          "alias": "Foundation baker 3 legacy",
+          "count": 237,
+          "totalLuckScore": 245,
+          "maxRound": 2
+        },
+        {
+          "address": "tz2TSvNTh2epDMhZHrw73nV9piBX7kLZ9K9m",
+          "alias": "Polychain Labs 2",
+          "count": 238,
+          "totalLuckScore": 244,
+          "maxRound": 2
+        }
+      ]
+    },
+    "2021": {
+      "totalLuckyBlocks": 16074,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 1890,
+        "totalLuckScore": 1961,
+        "maxRound": 3
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 1890,
+          "totalLuckScore": 1961,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 1033,
+          "totalLuckScore": 1108,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 1005,
+          "totalLuckScore": 1061,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 704,
+          "totalLuckScore": 760,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n",
+          "alias": "pos.dog",
+          "count": 559,
+          "totalLuckScore": 625,
+          "maxRound": 6
+        },
+        {
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93",
+          "alias": "Stake.fish",
+          "count": 430,
+          "totalLuckScore": 458,
+          "maxRound": 6
+        },
+        {
+          "address": "tz3NExpXn9aPNZPorRE4SdjJ2RGrfbJgMAaV",
+          "alias": "Foundation baker 5 legacy",
+          "count": 428,
+          "totalLuckScore": 451,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3WMqdzXqRWXwyvj5Hp2H7QEepaUuS7vd9K",
+          "alias": "Foundation baker 7 legacy",
+          "count": 418,
+          "totalLuckScore": 441,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3bTdwZinP8U1JmSweNzVKhmwafqWmFWRfk",
+          "alias": "Foundation baker 4 legacy",
+          "count": 418,
+          "totalLuckScore": 440,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3bvNMQ95vfAYtG8193ymshqjSvmxiCUuR5",
+          "alias": "Foundation baker 2 legacy",
+          "count": 394,
+          "totalLuckScore": 413,
+          "maxRound": 4
+        }
+      ]
+    },
+    "2022": {
+      "totalLuckyBlocks": 13499,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 1743,
+        "totalLuckScore": 1885,
+        "maxRound": 11
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 1743,
+          "totalLuckScore": 1885,
+          "maxRound": 11
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 880,
+          "totalLuckScore": 923,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 836,
+          "totalLuckScore": 911,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 723,
+          "totalLuckScore": 790,
+          "maxRound": 6
+        },
+        {
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n",
+          "alias": "pos.dog",
+          "count": 621,
+          "totalLuckScore": 674,
+          "maxRound": 5
+        },
+        {
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93",
+          "alias": "Stake.fish",
+          "count": 568,
+          "totalLuckScore": 636,
+          "maxRound": 7
+        },
+        {
+          "address": "tz1Nf6tsK4G6bBqgSQERy4nUtkHNKUVdh7q1",
+          "alias": null,
+          "count": 321,
+          "totalLuckScore": 336,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb",
+          "alias": "P2P.org",
+          "count": 302,
+          "totalLuckScore": 330,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1eEnQhbwf6trb8Q8mPb2RaPkNk2rN7BKi8",
+          "alias": "Chorus One - Stake Only",
+          "count": 265,
+          "totalLuckScore": 293,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1Ldzz6k1BHdhuKvAtMRX7h5kJSMHESMHLC",
+          "alias": "PayTezos",
+          "count": 250,
+          "totalLuckScore": 282,
+          "maxRound": 5
+        }
+      ]
+    },
+    "2023": {
+      "totalLuckyBlocks": 13278,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 1948,
+        "totalLuckScore": 2024,
+        "maxRound": 7
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 1948,
+          "totalLuckScore": 2024,
+          "maxRound": 7
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 856,
+          "totalLuckScore": 889,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n",
+          "alias": "pos.dog",
+          "count": 687,
+          "totalLuckScore": 719,
+          "maxRound": 4
+        },
+        {
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93",
+          "alias": "Stake.fish",
+          "count": 620,
+          "totalLuckScore": 655,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 432,
+          "totalLuckScore": 446,
+          "maxRound": 2
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 373,
+          "totalLuckScore": 382,
+          "maxRound": 2
+        },
+        {
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb",
+          "alias": "P2P.org",
+          "count": 342,
+          "totalLuckScore": 357,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1g6cJZPL8DoDZtX8voQ11prscHC7xqbois",
+          "alias": null,
+          "count": 339,
+          "totalLuckScore": 354,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3gtoUxdudfBRcNY7iVdKPHCYYX6xdPpoRS",
+          "alias": null,
+          "count": 327,
+          "totalLuckScore": 347,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1eEnQhbwf6trb8Q8mPb2RaPkNk2rN7BKi8",
+          "alias": "Chorus One - Stake Only",
+          "count": 295,
+          "totalLuckScore": 312,
+          "maxRound": 5
+        }
+      ]
+    },
+    "2024": {
+      "totalLuckyBlocks": 21828,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 3400,
+        "totalLuckScore": 3671,
+        "maxRound": 8
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 3400,
+          "totalLuckScore": 3671,
+          "maxRound": 8
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 1481,
+          "totalLuckScore": 1605,
+          "maxRound": 6
+        },
+        {
+          "address": "tz1VQnqCCqX4K5sP3FNkVSNKTdCAMJDd3E1n",
+          "alias": "pos.dog",
+          "count": 1414,
+          "totalLuckScore": 1544,
+          "maxRound": 6
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 823,
+          "totalLuckScore": 875,
+          "maxRound": 3
+        },
+        {
+          "address": "tz2FCNBrERXtaTtNX6iimR1UJ5JSDxvdHM93",
+          "alias": "Stake.fish",
+          "count": 748,
+          "totalLuckScore": 815,
+          "maxRound": 12
+        },
+        {
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb",
+          "alias": "P2P.org",
+          "count": 614,
+          "totalLuckScore": 683,
+          "maxRound": 6
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 550,
+          "totalLuckScore": 585,
+          "maxRound": 4
+        },
+        {
+          "address": "tz3cqThj23Feu55KDynm7Vg81mCMpWDgzQZq",
+          "alias": "Tezos Foundation Baker 1",
+          "count": 477,
+          "totalLuckScore": 526,
+          "maxRound": 6
+        },
+        {
+          "address": "tz3UQN6nBQHofmgQ3pZannhiYE2CT7TEZFim",
+          "alias": "Tezos Foundation Baker 4",
+          "count": 468,
+          "totalLuckScore": 524,
+          "maxRound": 7
+        },
+        {
+          "address": "tz3ipHZQpBBFuxv7eKoFgGnTaU3RBhnS93yY",
+          "alias": "Tezos Foundation Baker 2",
+          "count": 482,
+          "totalLuckScore": 521,
+          "maxRound": 4
+        }
+      ]
+    },
+    "2025": {
+      "totalLuckyBlocks": 22452,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 2338,
+        "totalLuckScore": 2431,
+        "maxRound": 7
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 2338,
+          "totalLuckScore": 2431,
+          "maxRound": 7
+        },
+        {
+          "address": "tz1RCFbB9GpALpsZtu6J58sb74dm8qe6XBzv",
+          "alias": "Kraken Baker",
+          "count": 1474,
+          "totalLuckScore": 1537,
+          "maxRound": 5
+        },
+        {
+          "address": "tz3dKooaL9Av4UY15AUx9uRGL5H6YyqoGSPV",
+          "alias": "Kiln",
+          "count": 1231,
+          "totalLuckScore": 1273,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 1151,
+          "totalLuckScore": 1204,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1eDKeD934e22muFRzVHxZYvFFx39QKHyj3",
+          "alias": null,
+          "count": 768,
+          "totalLuckScore": 793,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1gfArv665EUkSg2ojMBzcbfwuPxAvqPvjo",
+          "alias": "Kraken Legacy Baker",
+          "count": 734,
+          "totalLuckScore": 753,
+          "maxRound": 2
+        },
+        {
+          "address": "tz1cJTktkAEhxyWZAyQrjcqZJ3BeQYyQMvBt",
+          "alias": null,
+          "count": 672,
+          "totalLuckScore": 696,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1P2Po7YM526ughEsRbY4oR9zaUPDZjxFrb",
+          "alias": "P2P.org",
+          "count": 580,
+          "totalLuckScore": 601,
+          "maxRound": 3
+        },
+        {
+          "address": "tz3gtoUxdudfBRcNY7iVdKPHCYYX6xdPpoRS",
+          "alias": null,
+          "count": 557,
+          "totalLuckScore": 568,
+          "maxRound": 4
+        },
+        {
+          "address": "tz1S8MNvuFEUsWgjHvi3AxibRBf388NhT1q2",
+          "alias": "Binance Baker",
+          "count": 516,
+          "totalLuckScore": 538,
+          "maxRound": 2
+        }
+      ]
+    },
+    "2026": {
+      "totalLuckyBlocks": 642,
+      "luckiestBaker": {
+        "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+        "alias": "Coinbase Baker",
+        "count": 62,
+        "totalLuckScore": 63,
+        "maxRound": 2
+      },
+      "topBakers": [
+        {
+          "address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk",
+          "alias": "Coinbase Baker",
+          "count": 62,
+          "totalLuckScore": 63,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3dKooaL9Av4UY15AUx9uRGL5H6YyqoGSPV",
+          "alias": "Kiln",
+          "count": 54,
+          "totalLuckScore": 55,
+          "maxRound": 2
+        },
+        {
+          "address": "tz1RCFbB9GpALpsZtu6J58sb74dm8qe6XBzv",
+          "alias": "Kraken Baker",
+          "count": 47,
+          "totalLuckScore": 47,
+          "maxRound": 1
+        },
+        {
+          "address": "tz1aRoaRhSpRYvFdyvgWLL6TGyRoGF51wDjM",
+          "alias": "Everstake",
+          "count": 38,
+          "totalLuckScore": 40,
+          "maxRound": 3
+        },
+        {
+          "address": "tz1cJTktkAEhxyWZAyQrjcqZJ3BeQYyQMvBt",
+          "alias": null,
+          "count": 20,
+          "totalLuckScore": 21,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3W7k9v3uniY1f2HQRKxymJybNvH3FgvZ5N",
+          "alias": null,
+          "count": 20,
+          "totalLuckScore": 20,
+          "maxRound": 1
+        },
+        {
+          "address": "tz3gtoUxdudfBRcNY7iVdKPHCYYX6xdPpoRS",
+          "alias": null,
+          "count": 19,
+          "totalLuckScore": 20,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3QSGPoRp3Kn7n3vY24eYeu3Peuqo45LQ4D",
+          "alias": null,
+          "count": 18,
+          "totalLuckScore": 19,
+          "maxRound": 2
+        },
+        {
+          "address": "tz3QT9dHYKDqh563chVa6za8526ys1UKfRfL",
+          "alias": null,
+          "count": 19,
+          "totalLuckScore": 19,
+          "maxRound": 1
+        },
+        {
+          "address": "tz1eDKeD934e22muFRzVHxZYvFFx39QKHyj3",
+          "alias": null,
+          "count": 18,
+          "totalLuckScore": 18,
+          "maxRound": 1
+        }
+      ]
+    }
+  }
+}
