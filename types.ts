@@ -66,8 +66,8 @@ export interface BakerExtendedStats {
   stakersCount: number;
   limitOfStakingOverBaking: number;
   edgeOfBakingOverStaking: number;
-  stakingBalance: number;
-  delegatedBalance: number;
+  votingPower: number;
+  externalDelegatedBalance: number;
 }
 
 

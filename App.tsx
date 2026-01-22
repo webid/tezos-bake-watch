@@ -416,7 +416,7 @@ const App: React.FC = () => {
                     bakerStats && (
                       <div className="flex flex-col sm:col-span-2 mt-1 pt-2 border-t border-zinc-800/50">
                         <span className="text-[9px] text-zinc-600 uppercase mb-0.5">Delegated Amount</span>
-                        <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.delegatedBalance / 1000000)} ꜩ</span>
+                        <span className="text-xs font-mono text-zinc-400 tabular-nums">{formatValue(bakerStats.externalDelegatedBalance / 1000000)} ꜩ</span>
                       </div>
                     )
                   )}
