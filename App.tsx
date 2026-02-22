@@ -339,27 +339,35 @@ const App: React.FC = () => {
     return (
       <div className="flex flex-col gap-4 mb-6 p-4 bg-zinc-900/30 rounded-lg border border-zinc-900/50">
         <div 
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-zinc-900/50 pb-4 cursor-pointer select-none group gap-4 sm:gap-0"
-          onClick={() => setIsMetricsExpanded(!isMetricsExpanded)}
+          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-zinc-900/50 pb-4 ${selectedBaker.isHardcoded ? '' : 'cursor-pointer hover:bg-zinc-900/10'} select-none group gap-4 sm:gap-0 transition-colors rounded-t-lg -mx-4 px-4 pt-4 -mt-4`}
+          onClick={() => {
+            if (!selectedBaker.isHardcoded) {
+              setIsMetricsExpanded(!isMetricsExpanded);
+            }
+          }}
         >
              <div className="flex items-center gap-3 w-full sm:w-auto">
-                 <button 
-                    className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors shrink-0"
-                    aria-label={isMetricsExpanded ? "Collapse metrics" : "Expand metrics"}
-                 >
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      className={`w-4 h-4 transition-transform duration-300 ${isMetricsExpanded ? 'rotate-180' : ''}`}
-                    >
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                 </button>
+                 {!selectedBaker.isHardcoded ? (
+                   <button 
+                      className="p-1 rounded hover:bg-zinc-800 text-zinc-500 hover:text-zinc-300 transition-colors shrink-0"
+                      aria-label={isMetricsExpanded ? "Collapse metrics" : "Expand metrics"}
+                   >
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        className={`w-4 h-4 transition-transform duration-300 ${isMetricsExpanded ? 'rotate-180' : ''}`}
+                      >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                   </button>
+                 ) : (
+                   <div className="w-6 shrink-0" />
+                 )}
                  {selectedBaker.logo && <img src={selectedBaker.logo} alt="" className="w-10 h-10 rounded-full bg-zinc-800 object-cover border border-zinc-800 shrink-0" />}
                  <div className="min-w-0">
                     <div className="flex items-center gap-2">
@@ -417,8 +425,8 @@ const App: React.FC = () => {
               </div>
         </div>
 
-        {isMetricsExpanded && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 animate-in slide-in-from-top-2 fade-in duration-300">
+        {isMetricsExpanded && !selectedBaker.isHardcoded && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 animate-in slide-in-from-top-2 fade-in duration-300 mt-4">
               <div className="relative">
                   {renderDataSection('Staking', selectedBaker.staking,
                     bakerStats && (

@@ -45,6 +45,7 @@ export interface Baker {
   balance: number;
   delegation: Delegation;
   staking: Staking;
+  isHardcoded?: boolean;
 }
 
 export interface Cycle {
