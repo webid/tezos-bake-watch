@@ -249,24 +249,58 @@ const App: React.FC = () => {
     ? new Date(nextBlockRight.timestamp).getTime() - now 
     : 0;
 
-  const lastCycleIndex = bakingRights.length > 0 ? bakingRights[bakingRights.length - 1].cycle : undefined;
-  const lastCycleData = lastCycleIndex ? cycles[lastCycleIndex] : undefined;
-    
-  const dataCoverageInterval = lastCycleData
-    ? new Date(lastCycleData.endTime).getTime() - now
-    : (lastRight ? new Date(lastRight.timestamp).getTime() - now : 0);
-
   // Group rights by cycle
   const groupedByCycle = useMemo(() => {
     const groups: Record<number, BakingRight[]> = {};
+    
+    let currentCycleIndex = -1;
+    let maxAvailableCycle = -1;
+    
+    if (Object.keys(cycles).length > 0) {
+      maxAvailableCycle = Math.max(...Object.keys(cycles).map(Number));
+    }
+    
+    if (currentLevel) {
+      for (const cycleStr of Object.keys(cycles)) {
+        const c = cycles[parseInt(cycleStr)];
+        if (c.firstLevel <= currentLevel && currentLevel <= c.lastLevel) {
+          currentCycleIndex = c.index;
+          break;
+        }
+      }
+    }
+
+    let minCycle = currentCycleIndex !== -1 ? currentCycleIndex : Infinity;
+    let maxCycle = maxAvailableCycle !== -1 ? maxAvailableCycle : -Infinity;
+
+    bakingRights.forEach(right => {
+      minCycle = Math.min(minCycle, right.cycle);
+      maxCycle = Math.max(maxCycle, right.cycle);
+    });
+
+    if (minCycle !== Infinity && maxCycle !== -Infinity) {
+      for (let i = minCycle; i <= maxCycle; i++) {
+        groups[i] = [];
+      }
+    }
+
     bakingRights.forEach(right => {
       if (!groups[right.cycle]) {
         groups[right.cycle] = [];
       }
       groups[right.cycle].push(right);
     });
+    
     return groups;
-  }, [bakingRights]);
+  }, [bakingRights, cycles, currentLevel]);
+
+  const cycleIndices = Object.keys(groupedByCycle).map(Number);
+  const lastCycleIndex = cycleIndices.length > 0 ? Math.max(...cycleIndices) : undefined;
+  const lastCycleData = lastCycleIndex ? cycles[lastCycleIndex] : undefined;
+    
+  const dataCoverageInterval = lastCycleData
+    ? new Date(lastCycleData.endTime).getTime() - now
+    : (lastRight ? new Date(lastRight.timestamp).getTime() - now : 0);
 
   const renderBakerInfo = () => {
     if (!selectedBaker || selectedBaker.name === 'Unknown Baker') return null;
@@ -495,18 +529,11 @@ const App: React.FC = () => {
       );
     }
 
-    if (bakingRights.length === 0 && allRights.length > 0) {
-      return (
-        <div className="text-center py-12">
-          <p className="text-zinc-600 text-[11px] font-mono uppercase">No upcoming baking rights in loaded range</p>
-        </div>
-      );
-    }
-
-    if (allRights.length === 0) {
+    const hasCycles = Object.keys(groupedByCycle).length > 0;
+    if (!hasCycles) {
         return (
           <div className="text-center py-12">
-            <p className="text-zinc-600 text-[11px] font-mono uppercase">No upcoming rights detected</p>
+            <p className="text-zinc-600 text-[11px] font-mono uppercase">No cycle data available</p>
           </div>
         );
     }
@@ -567,7 +594,7 @@ const App: React.FC = () => {
                 <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-500/5 px-2 py-0.5 rounded border border-blue-500/10">
                   Cycle {cycle}
                 </span>
-                <span className="text-[9px] text-zinc-700 font-mono uppercase">
+                <span className="text-[9px] text-zinc-400 font-mono uppercase">
                   {cycleRights.length} slots
                 </span>
                 <div className="flex-grow h-px bg-zinc-900" />
@@ -582,13 +609,13 @@ const App: React.FC = () => {
               {cycles[parseInt(cycle)] && (
                 <div className="flex items-center justify-end gap-4 pt-3 pb-1 opacity-60">
                    <div className="flex items-center gap-1.5">
-                     <span className="text-[9px] text-zinc-600 uppercase tracking-wider font-bold">End Level</span>
-                     <span className="text-[10px] text-zinc-500 font-mono">{cycles[parseInt(cycle)].lastLevel.toLocaleString()}</span>
+                     <span className="text-[9px] text-zinc-500 uppercase tracking-wider font-bold">End Level</span>
+                     <span className="text-[10px] text-zinc-400 font-mono">{cycles[parseInt(cycle)].lastLevel.toLocaleString()}</span>
                    </div>
                    <div className="w-px h-3 bg-zinc-800"></div>
                    <div className="flex items-center gap-1.5">
-                     <span className="text-[9px] text-zinc-600 uppercase tracking-wider font-bold">Est. End</span>
-                     <span className="text-[10px] text-zinc-500 font-mono">{new Date(cycles[parseInt(cycle)].endTime).toLocaleString()}</span>
+                     <span className="text-[9px] text-zinc-500 uppercase tracking-wider font-bold">Est. End</span>
+                     <span className="text-[10px] text-zinc-400 font-mono">{new Date(cycles[parseInt(cycle)].endTime).toLocaleString()}</span>
                    </div>
                 </div>
               )}
